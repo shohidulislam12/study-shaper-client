@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../Authprovider/useContext";
+import { AuthContext } from "../Authprovider/AuthProvider";
+
 
 const Navbar = () => {
-    const {name}=useContext(AuthContext)
-    console.log(name)
+    const {user,handlesignOut}=useContext(AuthContext)
+    console.log(user)
     const list=<>
         <li><NavLink to='/'>Home</NavLink> </li>
     <li><NavLink to='/dashbord'>DashBord</NavLink> </li>
-
     </>
+    const signout=()=>{
+      handlesignOut()
+      setUser(null)
+    }
     return (
         <div className="navbar bg-[#262626] text-white">
         <div className="flex-1 items-center">
@@ -27,9 +31,11 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img
+              {user?  <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  src={user?.photoURL}/>:  <img
+                  alt="Tailwind CSS Navbar component"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />}
               </div>
             </div>
             <ul
@@ -38,7 +44,7 @@ const Navbar = () => {
               <li>
                 <a className="justify-between">
                   Profile
-                  <span className="badge">New</span>
+                  <span className="badge">{user&&user?.displayName}</span>
                 </a>
               </li>
            
@@ -49,7 +55,7 @@ const Navbar = () => {
             </span>
       
               <li><NavLink to='/'>Settings</NavLink></li>
-              <li><NavLink to='/logout'>Logout</NavLink></li>
+              <li><button onClick={signout}>Logout</button></li>
               <li><NavLink to='/signin'>SignIn</NavLink></li>
               <li><NavLink to='/signup'>SignUp</NavLink></li>
             </ul>
