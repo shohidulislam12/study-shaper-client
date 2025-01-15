@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+a.active{
+    color: white;
+    background-color: #82B440;
+    padding: 10px;
+    border-radius: 5px;
+}
