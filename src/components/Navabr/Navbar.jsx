@@ -15,10 +15,10 @@ const Navbar = () => {
       setUser(null)
     }
     return (
-        <div className="navbar bg-[#262626] text-white">
+        <div className="navbar fixed max-w-screen-xl z-50 mx-auto left-0 right-0  bg-[#262626] text-white">
         <div className="flex-1 items-center">
             <img src="/reading.png" className="w-10 h-10" alt="" />
-          <a className=" text-xl font-bold">Study<span className="text-[#82B440]">Sphere</span></a>
+          <a className=" text-xl font-bold">Study<span className="text-blue-600">Sphere</span></a>
         </div>
         <div className="flex-none  gap-2">
        <div>
