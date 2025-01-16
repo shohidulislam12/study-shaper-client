@@ -7,7 +7,8 @@ import DashBord from "./Dashbord/DashBord";
 import Home from "./Home/Home";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
-  
+  import SessionDetails    from "../components/Home/SessionDetails.jsx"
+import PrivetRoute from "./Shared/PrivetRoute.jsx";
 
 
     const router = createBrowserRouter([
@@ -30,6 +31,10 @@ import SignUp from "./Pages/SignUp";
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/sessiondetails',
+                element:<PrivetRoute><SessionDetails></SessionDetails></PrivetRoute>
             },
           ]
         },

@@ -4,7 +4,7 @@ const Footer = () => {
       <div>
         <img src="/reading.png" alt="Logo" className="w-12 h-12 mb-2" />
         <p className="font-bold">
-          Study<span className="text-[#82B440]">Sphere</span> <br />
+          Study<span className="text-blue-500">Sphere</span> <br />
           Your Collaborative Learning Platform
         </p>
         <p>© {new Date().getFullYear()} StudySphere. All rights reserved.</p>

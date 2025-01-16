@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { photoURL } from '../Shared/Sheared';
 import { AuthContext } from '../Authprovider/AuthProvider';
 import GoogleLog from './GoogleLog';
@@ -9,6 +9,10 @@ const SignUp = () => {
     const {creatuserUsingMailPass,updateProfice}=useContext(AuthContext)
     const [photo,setPhoto]=useState(null)
     const navigate=useNavigate()
+    const location=useLocation()
+const from=location?.state||'/'
+console.log(location)
+console.log("sss",location?.state)
     const handleSignUp=async (e)=>{
         e.preventDefault()
         const form=e.target
@@ -29,7 +33,7 @@ const SignUp = () => {
         //updateprofile
        updateProfice(name,photourl)
         .then(() => {
-            navigate('/')
+            navigate(from)
             console.log('sucess')
           }).catch((error) => {
            console.log(error)
@@ -116,7 +120,7 @@ const SignUp = () => {
                         </div>
                         <p className="text-center text-gray-500 mt-4">
                             Already have an account?{" "}
-                            <NavLink
+                            <NavLink state={from}
                                 to="/signin"
                                 className="text-indigo-600 font-semibold hover:underline"
                             >

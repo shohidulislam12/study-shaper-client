@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 
 const StudySessionCard = () => {
@@ -21,9 +22,9 @@ const StudySessionCard = () => {
                 A quick brown fox jumps over the lazy dog. Choose your shoes!
             </p>
             <div className="card-actions">
-                <button className="btn bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
-                    Buy Now
-                </button>
+                <NavLink to='/sessiondetails' className="btn bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
+                    Details
+                </NavLink>
             </div>
         </div>
     </div>

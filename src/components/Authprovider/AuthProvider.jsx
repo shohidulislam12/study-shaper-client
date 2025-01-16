@@ -8,7 +8,7 @@ import { GithubAuthProvider } from "firebase/auth/web-extension";
 
 export const AuthContext=createContext(null)
 const AuthProvider=({children})=>{
-const [loading,setLoading]=useState(false)
+const [loading,setLoading]=useState(true)
 const [user,setUser]=useState(null)
 const googleprovider = new GoogleAuthProvider();
 const githubprovider = new GithubAuthProvider();
@@ -25,12 +25,15 @@ const signInWithMailPass=(email, password)=>{
  return signInWithEmailAndPassword(auth, email, password)
 }
 const googleLogin=()=>{
+  setLoading(true)
   return signInWithPopup(auth,googleprovider)
 }
 const githubLogin=()=>{
+  setLoading(true)
   return signInWithPopup(auth, githubprovider)
 }
 const updateProfice=(name,photo)=>{
+  setLoading(true)
  return updateProfile(auth.currentUser, {
   displayName:name, photoURL:photo
 })
@@ -48,21 +51,25 @@ const handlesignOut=()=>{
 useEffect(()=>{
 const unsubscribe=  onAuthStateChanged(auth,async (currentuser) => {
     if (currentuser) {
+
     console.log('currentuser',currentuser)
-   await setUser(currentuser)
+   setUser(currentuser)
     } else {
     console.log('user loged out')
+    setUser(null)
     }
+    setLoading(false)
   });
-   ()=>{
-return unsubscribe()
-  }
-  setLoading(false)
+  
+  
+return ()=> unsubscribe()
+  
+
 },[user])
 
 
     const authinf={
-        user,creatuserUsingMailPass,signInWithMailPass,handlesignOut,googleLogin,githubLogin,updateProfice,setUser
+        user,creatuserUsingMailPass,signInWithMailPass,handlesignOut,googleLogin,githubLogin,updateProfice,setUser,loading
     }
     console.log(user)
   return(

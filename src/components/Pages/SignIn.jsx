@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Authprovider/AuthProvider';
 import { toast } from 'react-toastify';
 import GoogleLog from './GoogleLog';
@@ -8,7 +8,10 @@ import Githublog from './Githublog';
 const SignIn = () => {
     const {signInWithMailPass}=useContext(AuthContext)
 const navigate=useNavigate()
-
+const location=useLocation()
+const from=location?.state||'/'
+console.log(location)
+console.log("ssssignin",location?.state)
     const handleSignin= (e)=>{
         e.preventDefault()
         const form=e.target    
@@ -18,7 +21,7 @@ const navigate=useNavigate()
         signInWithMailPass(email ,password)
         .then((user) => {
        console.log(user)
-       navigate('/')
+       navigate(from)
        return toast.success('sign in sucessfully')
           })
           .catch((error) => {
@@ -77,7 +80,7 @@ const navigate=useNavigate()
                         </div>
                         <p className="text-center text-gray-500 mt-4">
                             Don’t have an account?{" "}
-                            <NavLink
+                            <NavLink state={from}
                                 to="/signup"
                                 className="text-indigo-600 font-semibold hover:underline"
                             >
