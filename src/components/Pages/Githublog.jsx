@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../Authprovider/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Githublog = () => {
     const {githubLogin}=useContext(AuthContext)
+    const location=useLocation()
+    const navigate=useNavigate()
+const from=location?.state||'/'
+console.log(location)
     const handleGithub=()=>{
         githubLogin()
         .then((user) => {
+            navigate(from)
            console.log(user)
           }).catch((error) => {
             console.log(error)

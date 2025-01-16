@@ -4,11 +4,13 @@ import { photoURL } from '../Shared/Sheared';
 import { AuthContext } from '../Authprovider/AuthProvider';
 import GoogleLog from './GoogleLog';
 import Githublog from './Githublog';
+import useAxiousPublic from '../Shared/useAxiousPublic';
 
 const SignUp = () => {
     const {creatuserUsingMailPass,updateProfice}=useContext(AuthContext)
     const [photo,setPhoto]=useState(null)
     const navigate=useNavigate()
+    const axiousPublic=useAxiousPublic()
     const location=useLocation()
 const from=location?.state||'/'
 console.log(location)
@@ -34,6 +36,19 @@ console.log("sss",location?.state)
        updateProfice(name,photourl)
         .then(() => {
             navigate(from)
+            //save in database 
+            const userData = {
+                name: user.user.displayName, // Fixed: Use `displayName` for user's name
+                email: user.user.email, // Include email as a best practice
+                photoURL: user.user.photoURL // Optional: User's profile picture
+            };
+        
+      axiousPublic.post('/users',userData)
+      .then(res=>{
+        if(res){
+        console.log(res)
+        }
+      })
             console.log('sucess')
           }).catch((error) => {
            console.log(error)

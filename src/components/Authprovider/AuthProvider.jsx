@@ -6,6 +6,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth/web-extension";
 
 
+
 export const AuthContext=createContext(null)
 const AuthProvider=({children})=>{
 const [loading,setLoading]=useState(true)
@@ -52,8 +53,9 @@ useEffect(()=>{
 const unsubscribe=  onAuthStateChanged(auth,async (currentuser) => {
     if (currentuser) {
 
-    console.log('currentuser',currentuser)
+    console.log('currentuseris',currentuser.displayName)
    setUser(currentuser)
+
     } else {
     console.log('user loged out')
     setUser(null)
