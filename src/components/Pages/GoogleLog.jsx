@@ -23,7 +23,8 @@ console.log(location)
             const userData = {
                 name: result.user.displayName, // Fixed: Use `displayName` for user's name
                 email: result.user.email, // Include email as a best practice
-                photoURL: result.user.photoURL // Optional: User's profile picture
+                photoURL: result.user.photoURL,
+                role:'student', // Optional: User's profile picture
             };
         
       axiousPublic.post('/users',userData)

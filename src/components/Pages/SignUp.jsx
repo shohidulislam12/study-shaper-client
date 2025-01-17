@@ -27,7 +27,8 @@ console.log("sss",location?.state)
       console.log("url from js",photourl)
         const email=form.email.value
         const password=form.password.value
-        const data={name,userphoto:photourl,email,password}
+        const role=form.role.value
+        const data={name,userphoto:photourl,email,password,role}
       // firebase creat user
       creatuserUsingMailPass(email,password)
       .then((user) => {
@@ -38,9 +39,10 @@ console.log("sss",location?.state)
             navigate(from)
             //save in database 
             const userData = {
-                name: user.user.displayName, // Fixed: Use `displayName` for user's name
-                email: user.user.email, // Include email as a best practice
-                photoURL: user.user.photoURL // Optional: User's profile picture
+                name: user.user.displayName, 
+                email: user.user.email,
+                photoURL: user.user.photoURL ,
+                role,
             };
         
       axiousPublic.post('/users',userData)
@@ -90,6 +92,18 @@ console.log("sss",location?.state)
                                 className="input input-bordered focus:outline-none focus:ring-2 focus:ring-indigo-400"
                                 required
                             />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-gray-700">Select Role</span>
+                            </label>
+                            <select name="role" id="cars">
+    <option value="student">Student</option>
+    <option value="tutor">Tutor</option>
+    <option value="administrator">Administrator</option>
+
+  </select>
+
                         </div>
                         <div className="form-control">
                             <label className="label">
