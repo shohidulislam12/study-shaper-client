@@ -21,6 +21,7 @@ import Allmaterialsadmin from "./Dashbord/Admin/Allmaterialsadmin.jsx";
 import Allstudysession from "./Dashbord/Admin/Allstudysession.jsx";
 import Allusers from "./Dashbord/Admin/allusers.jsx";
 import EditNote from "./Dashbord/student/EditNote.jsx";
+import UploeadMaterial from "./Dashbord/Tutor/UploeadMaterial.jsx";
 
 
     const router = createBrowserRouter([
@@ -66,9 +67,13 @@ import EditNote from "./Dashbord/student/EditNote.jsx";
                     path:'creatsession',
                     element:<Creatsession></Creatsession>
                 },
+                 {
+                    path:'createdsession/material/:id',
+                    element:<PrivetRoute><UploeadMaterial></UploeadMaterial></PrivetRoute>
+                },
                   {
                     path:'uploadmaterials',
-                    element:<Uploadmaterials></Uploadmaterials>
+                    element:<PrivetRoute><Uploadmaterials></Uploadmaterials></PrivetRoute>
                 },
                   {
                     path:'createdsession',

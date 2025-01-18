@@ -5,6 +5,7 @@ import { AuthContext } from "../../Authprovider/AuthProvider";
 import { FaCodePullRequest } from "react-icons/fa6";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 const Allcreatedsession = () => {
   const { user } = useContext(AuthContext);
@@ -139,7 +140,9 @@ const Allcreatedsession = () => {
                 </dialog>
                 {/* end modal */}
 
-                <FaCloudUploadAlt />
+              <NavLink to={`material/${session._id}`}>
+              <FaCloudUploadAlt />
+              </NavLink>
               </td>
             </tr>
           ))}
