@@ -17,6 +17,9 @@ import Allmaterials from "./Dashbord/Tutor/Allmaterials.jsx";
 import Allcreatedsession from "./Dashbord/Tutor/Allcreatedsession.jsx";
 import Uploadmaterials from "./Dashbord/Tutor/Uploadmaterials.jsx";
 import Creatsession from "./Dashbord/Tutor/Creatsession.jsx";
+import Allmaterialsadmin from "./Dashbord/Admin/Allmaterialsadmin.jsx";
+import Allstudysession from "./Dashbord/Admin/Allstudysession.jsx";
+import Allusers from "./Dashbord/Admin/allusers.jsx";
 
 
     const router = createBrowserRouter([
@@ -51,7 +54,7 @@ import Creatsession from "./Dashbord/Tutor/Creatsession.jsx";
                 },
                 // tutor dashbord
                   {
-                    path:'allmaterials',
+                    path:'materials',
                     element:<Allmaterials></Allmaterials>
                 },
                   {
@@ -63,9 +66,23 @@ import Creatsession from "./Dashbord/Tutor/Creatsession.jsx";
                     element:<Uploadmaterials></Uploadmaterials>
                 },
                   {
-                    path:'allcreatedsession',
+                    path:'createdsession',
                     element:<Allcreatedsession></Allcreatedsession>
                 },
+                // admin dashbord
+                  {
+                    path:'allmaterials',
+                    element:<Allmaterialsadmin></Allmaterialsadmin>
+                },
+                  {
+                    path:'allstudysession',
+                    element:<Allstudysession></Allstudysession>
+                },
+                  {
+                    path:'allusers',
+                    element:<Allusers></Allusers>
+                },
+                  
                 ]
             },
             {

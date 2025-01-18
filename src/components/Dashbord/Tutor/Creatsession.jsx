@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Authprovider/AuthProvider';
+import useAxiousPublic from '../../Shared/useAxiousPublic';
+import { toast } from 'react-toastify';
+import { photoURL } from '../../Shared/Sheared';
 
 
 const Creatsession = () => {
+  const [photo,setPhoto]=useState(null)
   const { user } = useContext(AuthContext);
+const axiousPublic=useAxiousPublic()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     // Handle form submission logic here
     const form=event.target
-
+    const thumbnelurl= await photoURL(photo)
     const sessionTitle=form.sessionTitle.value
     const tutorName=form.tutorName.value
     const tutorEmail=form.tutorEmail.value
@@ -26,8 +31,17 @@ const Creatsession = () => {
 
 
 
-    const formData={sessionTitle,tutorName,tutorEmail,tutorphoto,sessionDescription,registrationStartDate,registrationEndDate,classStartDate,classEndDate,sessionDuration,registrationFee,status}
+    const formData={sessionTitle,tutorName,tutorEmail,tutorphoto,thumbnelurl,sessionDescription,registrationStartDate,registrationEndDate,classStartDate,classEndDate,sessionDuration,registrationFee,status}
     console.log(formData)
+    //save data in database
+    const {data}=await axiousPublic.post('/allsession',formData)
+    if(data.insertedId){
+ toast.success('Session Creat Sucess')
+    }
+    else(
+        toast.error('Sorr,there is an irror')
+    )
+    console.log(data)
   };
 
   return (
@@ -75,7 +89,19 @@ const Creatsession = () => {
             className="input input-bordered w-full"
           />
         </div>
-
+        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-gray-700">Session Thumbnel</span>
+                            </label>
+                            <input 
+                            onChange={(e)=>setPhoto(e.target.files[0])}
+                                type="file"
+                                name='photo'
+                                accept='images/*'
+                                className="file-input file-input-bordered focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                required
+                            />
+                        </div>
         {/* Session Description */}
         <div className="form-control">
           <label className="label">
