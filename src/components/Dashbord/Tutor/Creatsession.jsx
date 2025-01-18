@@ -9,8 +9,9 @@ const Creatsession = () => {
   const [photo,setPhoto]=useState(null)
   const { user } = useContext(AuthContext);
 const axiousPublic=useAxiousPublic()
-
+const currentDate=new Date()
   const handleSubmit = async(event) => {
+
     event.preventDefault();
     // Handle form submission logic here
     const form=event.target
@@ -28,7 +29,35 @@ const axiousPublic=useAxiousPublic()
     const registrationFee=form.registrationFee.value
     const status=form.status.value
 
-
+    // Get form values
+    const registrationStart = new Date(form.registrationStartDate.value);
+    const registrationEnd = new Date(form.registrationEndDate.value);
+    const classStart = new Date(form.classStartDate.value);
+    const classEnd = new Date(form.classEndDate.value);
+  
+    // Validate date conditions
+    if (registrationStart >= registrationEnd) {
+      toast.error("Registration start date must be before the end date.");
+      return;
+    }
+  
+    if (registrationEnd>= classStart) {
+      toast.error("Class start date must be after the registration end date.");
+      return;
+    }
+  
+    if (classStartDate >= classEndDate) {
+      toast.error("Class end date must be after the class start date.");
+      return;
+    }
+    if (classStart < currentDate) {
+      toast.error("Class start date must be today or a future date.");
+      return;
+    }
+    if (registrationStart < currentDate) {
+      toast.error("Registration start date must be today or a future date.");
+      return;
+    }    
 
 
     const formData={sessionTitle,tutorName,tutorEmail,tutorphoto,thumbnelurl,sessionDescription,registrationStartDate,registrationEndDate,classStartDate,classEndDate,sessionDuration,registrationFee,status}

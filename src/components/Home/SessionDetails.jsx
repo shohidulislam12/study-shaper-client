@@ -1,36 +1,74 @@
+import { useParams } from "react-router-dom";
+import useAxiousPublic from "../Shared/useAxiousPublic";
+import { useQuery } from "@tanstack/react-query";
 
 
 const SessionDetails = () => {
-    const session={
-        "title": "Advanced Chemistry Session",
-        "tutorName": "Dr. John Doe",
-        "averageRating": 4.5,
-        "description": "A comprehensive session on organic chemistry for advanced students.",
-        "registrationStartDate": "2025-02-01T08:00:00",
-        "registrationEndDate": "2025-02-28T23:59:59",
-        "classStartTime": "2025-03-01T09:00:00",
-        "classEndTime": "2025-03-01T11:00:00",
-        "duration": 2,
-        "registrationFee": 20,
-        "reviews": [
-          {
-            "comment": "Great session, very informative.",
-            "rating": 5
-          },
-          {
-            "comment": "Good session but could be more interactive.",
-            "rating": 4
-          }
-        ]
-      }
+    const date = new Date();
+    
+ 
+    const {id}=useParams()
+    const axiousPublic=useAxiousPublic()
+    const {data:session=[],isLoading,refetch} = useQuery({
+        queryKey: ['session'],
+         queryFn: async()=>{
+           const res= await axiousPublic.get(`/session/${id}`)
+           return res.data
+         }
+                  
+        })
+        if (isLoading) {
+         return <div className="loading loading-ring loading-lg"></div>;
+       }
+       const registrationStartDate=new Date(session.registrationStartDate)
+       console.log(date)
+       console.log(registrationStartDate)
+    // const session={
+    //     "title": "Advanced Chemistry Session",
+    //     "tutorName": "Dr. John Doe",
+    //     "averageRating": 4.5,
+    //     "description": "A comprehensive session on organic chemistry for advanced students.",
+    //     "registrationStartDate": "2025-02-01T08:00:00",
+    //     "registrationEndDate": "2025-02-28T23:59:59",
+    //     "classStartTime": "2025-03-01T09:00:00",
+    //     "classEndTime": "2025-03-01T11:00:00",
+    //     "duration": 2,
+    //     "registrationFee": 20,
+    //     "reviews": [
+    //       {
+    //         "comment": "Great session, very informative.",
+    //         "rating": 5
+    //       },
+    //       {
+    //         "comment": "Good session but could be more interactive.",
+    //         "rating": 4
+    //       }
+    //     ]
+    //   }
       
+    //   {
+    //     "_id": "678b5ea1a4eee5f2f2c72b6b",
+    //     "sessionTitle": "Sed omnis quidem sus",
+    //     "tutorName": "shohidul Islam",
+    //     "tutorEmail": "shohidulislamsifat2003@gmail.com",
+    //     "tutorphoto": "https://lh3.googleusercontent.com/a/ACg8ocKwCVTG4HAdwcleGmH8otwZv1YD0A_NJiCBJWO1kUicxeOvEqMbdw=s96-c",
+    //     "thumbnelurl": "https://i.ibb.co.com/fd9Sj50/caers.jpg",
+    //     "sessionDescription": "Laudantium non in d",
+    //     "registrationStartDate": "1996-12-21",
+    //     "registrationEndDate": "2018-04-01",
+    //     "classStartDate": "1972-01-13",
+    //     "classEndDate": "1971-04-09",
+    //     "sessionDuration": "65",
+    //     "registrationFee": "0",
+    //     "status": "pending"
+    // },
     return (
     
           
             <div className="container my-16 mx-auto p-6">
                 <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
             
-                    <h1 className="text-3xl font-bold text-indigo-600 mb-4">{session.title}</h1>
+                    <h1 className="text-3xl font-bold text-indigo-600 mb-4">{session.sessionTitle}</h1>
     
                     {/* Tutor Details */}
                     <div className="flex items-center mb-4">
@@ -92,7 +130,7 @@ const SessionDetails = () => {
                     </div>
     
                     {/* Reviews */}
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <h3 className="text-xl font-semibold text-gray-700">Reviews:</h3>
                         {session.reviews.length > 0 ? (
                             session.reviews.map((review, index) => (
@@ -105,7 +143,7 @@ const SessionDetails = () => {
                             <p className="text-gray-600">No reviews yet.</p>
                         )}
                     </div>
-    
+     */}
                     {/* Book Now or Registration Closed */}
                     <div className="mt-6">
                         {session ? (

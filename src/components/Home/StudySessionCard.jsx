@@ -1,13 +1,19 @@
 import { NavLink } from "react-router-dom";
 
 
-const StudySessionCard = () => {
+const StudySessionCard = ({session}) => {
+    const date = new Date();
+    const registrationStartDate=new Date(session.registrationStartDate)
+  const disablebtn =date>registrationStartDate
+console.log('disable',disablebtn)
+   
+    const {sessionTitle,thumbnelurl,sessionDescription}=session
     return (
         <div className="card bg-base-100 border border-gray-200 shadow-lg rounded-lg overflow-hidden group transition-transform transform ">
         <figure className="overflow-hidden relative">
             <img
-                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                alt="Shoes"
+                src={thumbnelurl}
+                alt={sessionTitle}
                 className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
@@ -16,15 +22,16 @@ const StudySessionCard = () => {
         </figure>
         <div className="card-body py-4 px-5 text-center">
             <h2 className="text-2xl font-semibold text-gray-800 mb-2 transition-all group-hover:text-indigo-600">
-                Stylish Shoes!
+               {sessionTitle}
             </h2>
             <p className="text-gray-500 text-sm mb-4 transition-all group-hover:text-gray-700">
-                A quick brown fox jumps over the lazy dog. Choose your shoes!
+               {sessionDescription}
             </p>
-            <div className="card-actions">
-                <NavLink to='/sessiondetails' className="btn bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
+            <div className="card-actions flex justify-between">
+                <NavLink to={`/sessiondetails/${session._id}`} className="btn bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
                     Details
                 </NavLink>
+                <button className={`btn ${!disablebtn?'btn-primary':'btn-warning'} btn-primary`}> {!disablebtn?'onging':'closed'}</button>
             </div>
         </div>
     </div>

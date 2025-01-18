@@ -94,7 +94,7 @@ import Allusers from "./Dashbord/Admin/allusers.jsx";
                 element:<SignUp></SignUp>
             },
             {
-                path:'/sessiondetails',
+                path:'/sessiondetails/:id',
                 element:<PrivetRoute><SessionDetails></SessionDetails></PrivetRoute>
             },
           ]
