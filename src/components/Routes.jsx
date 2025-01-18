@@ -10,7 +10,7 @@ import SignUp from "./Pages/SignUp";
   import SessionDetails    from "../components/Home/SessionDetails.jsx"
 import PrivetRoute from "./Shared/PrivetRoute.jsx";
 import Booked from "./Dashbord/student/Booked.jsx";
-import CreartNote from "./Dashbord/student/CreartNote.jsx";
+import CreartNote from "./Dashbord/student/CreatNote.jsx";
 import ManegeNote from "./Dashbord/student/ManegeNote.jsx";
 import StudyMateril from "./Dashbord/student/StudyMateril.jsx";
 import Allmaterials from "./Dashbord/Tutor/Allmaterials.jsx";
@@ -20,6 +20,7 @@ import Creatsession from "./Dashbord/Tutor/Creatsession.jsx";
 import Allmaterialsadmin from "./Dashbord/Admin/Allmaterialsadmin.jsx";
 import Allstudysession from "./Dashbord/Admin/Allstudysession.jsx";
 import Allusers from "./Dashbord/Admin/allusers.jsx";
+import EditNote from "./Dashbord/student/EditNote.jsx";
 
 
     const router = createBrowserRouter([
@@ -43,6 +44,10 @@ import Allusers from "./Dashbord/Admin/allusers.jsx";
                   {
                     path:'createnote',
                     element:<CreartNote></CreartNote>
+                },
+                  {
+                    path:'personalnotes/note/:id',
+                    element:<EditNote></EditNote>
                 },
                   {
                     path:'personalnotes',

@@ -5,8 +5,7 @@ const StudySessionCard = ({session}) => {
     const date = new Date();
     const registrationStartDate=new Date(session.registrationStartDate)
   const disablebtn =date>registrationStartDate
-console.log('disable',disablebtn)
-   
+
     const {sessionTitle,thumbnelurl,sessionDescription}=session
     return (
         <div className="card bg-base-100 border border-gray-200 shadow-lg rounded-lg overflow-hidden group transition-transform transform ">

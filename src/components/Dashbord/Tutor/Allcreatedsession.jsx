@@ -22,13 +22,13 @@ const Allcreatedsession = () => {
     return <div className="loading loading-ring loading-lg"></div>;
   }
 
-  console.log(sessions);
+ 
   const handlestatus = (id) => {
     if (!setSelestatus) {
       Swal.fire("Error", "Please select a role!", "error");
       return;
     }
-    console.log("id", id);
+  
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -39,9 +39,7 @@ const Allcreatedsession = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(user);
-        console.log(status);
-        console.log(id);
+    
         axiousPublic
           .patch(`/updatestatus/${id}`, {
             status: status,

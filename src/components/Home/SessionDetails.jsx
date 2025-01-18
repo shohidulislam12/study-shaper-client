@@ -21,8 +21,7 @@ const SessionDetails = () => {
          return <div className="loading loading-ring loading-lg"></div>;
        }
        const registrationStartDate=new Date(session.registrationStartDate)
-       console.log(date)
-       console.log(registrationStartDate)
+    
     // const session={
     //     "title": "Advanced Chemistry Session",
     //     "tutorName": "Dr. John Doe",

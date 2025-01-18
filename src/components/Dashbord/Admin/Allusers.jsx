@@ -20,7 +20,7 @@ const {data:users=[],isLoading,refetch} = useQuery({
    if (isLoading) {
     return <div className="loading loading-ring loading-lg"></div>;
   }
-  console.log(search)
+ 
 //update rule 
 const handlerole=(user)=>{
     if (!selectedRole) {
@@ -39,13 +39,12 @@ const handlerole=(user)=>{
        
       }).then((result) => {
         if (result.isConfirmed) {
-            console.log(user)
-            console.log(selectedRole)
+           
           axiousPublic.patch(`/updateuserole/${user.email}`,{role:selectedRole})
           .then(res=>{
             refetch()
             toast.success('role updated sucessfully')
-            console.log(res.data)
+            
           })
         //   Swal.fire({
         //     title: "Deleted!",

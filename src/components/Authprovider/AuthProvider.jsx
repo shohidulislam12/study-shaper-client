@@ -12,6 +12,7 @@ import { auth } from "../../firebase.init";
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth/web-extension";
 import useAxiousPublic from "../Shared/useAxiousPublic";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -48,10 +49,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     signOut(auth)
       .then(() => {
-        console.log("sign out succsss");
+        toast.success("sign out succsss");
       })
       .catch((error) => {
-        console.log("error happen ");
+        toast.error("error happen ");
       });
   };
 
@@ -70,7 +71,7 @@ const AuthProvider = ({ children }) => {
         })
 
       } else {
-        console.log("user loged out");
+        toast.success("user loged out");
         setUser(null);
         //remove token
         localStorage.removeItem('token')
@@ -92,7 +93,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     loading,
   };
-  console.log(user);
+
   return (
     <AuthContext.Provider value={authinf}>{children}</AuthContext.Provider>
   );

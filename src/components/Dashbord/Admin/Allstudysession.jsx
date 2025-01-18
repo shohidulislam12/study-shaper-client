@@ -32,7 +32,7 @@ const Allstudysession = () => {
       Swal.fire("Error", "Please select a role!", "error");
       return;
     }
-    console.log("id", id);
+ 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -43,9 +43,7 @@ const Allstudysession = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(user);
-        console.log(status);
-        console.log(id);
+     
         axiousPublic
           .patch(`/updatestatus/${id}`, {
             status: status,
@@ -53,7 +51,7 @@ const Allstudysession = () => {
           .then((res) => {
             refetch();
             toast.success("role updated sucessfully");
-            console.log(res.data);
+           
           });
         Swal.fire({
           title: "Deleted!",

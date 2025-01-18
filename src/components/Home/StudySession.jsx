@@ -15,7 +15,7 @@ const StudySession = () => {
         if (isLoading) {
          return <div className="loading loading-ring loading-lg"></div>;
        }
-       console.log(allsession)
+
     return (
         <div className="my-20">
             <h2 className="text-3xl text-center my-5 font-semibold">Available Session</h2>

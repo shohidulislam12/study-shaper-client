@@ -33,12 +33,12 @@ console.log(location)
         console.log(res.data.insertedId)
         }
       })
-            console.log(data)
+          
             toast.success('login Sucess')
-          console.log(result)
+       
           }).catch((error) => {
             toast.error(error)
-            console.log(error)
+            
           });
         
     }
