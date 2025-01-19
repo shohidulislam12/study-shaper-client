@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../Authprovider/AuthProvider';
-import { useParams } from 'react-router-dom';
-import useAxiousPublic from '../../Shared/useAxiousPublic';
-import { photoURL } from '../../Shared/Sheared';
-import { toast } from 'react-toastify';
 
-const UploeadMaterial = () => {
+import { useNavigate, useParams } from 'react-router-dom';
+
+
+import { toast } from 'react-toastify';
+import useAxiousPublic from '../../Shared/useAxiousPublic';
+import { AuthContext } from '../../Authprovider/AuthProvider';
+import { photoURL } from '../../Shared/Sheared';
+
+const EditMaterial = () => {
     const {id}=useParams()
+    const navigate=useNavigate()
     const axiousPublic=useAxiousPublic()
     const [image,setImage]=useState(null)
     const {user}=useContext(AuthContext)
      const [session,setsession]=useState([])
      useEffect(()=>{
-        axiousPublic.get(`/session/${id}`)
+        axiousPublic.get(`/editmaterial/${id}`)
         .then(res=>{
             setsession(res.data)
             console.log(res.data)
@@ -27,18 +31,16 @@ const UploeadMaterial = () => {
             teacherEmail:user.email,
             sessionId:id,
             drivephoto,
-            linkarray,
-            
-sessionTitle:
-session.sessionTitle
+            linkarray
 
          }
          console.log(noteData)
         
-       const {data}=await axiousPublic.post('/allmaterial',noteData)
+       const {data}=await axiousPublic.put(`/materialUpdate/${id}`,noteData)
      console.log(data)
      if(data.acknowledged){
-       toast.success('Material created  sucess')
+      navigate(-1)
+       toast.success('Material Update  sucess')
      }
       
        }
@@ -47,7 +49,7 @@ session.sessionTitle
     console.log(session)
     return (
         <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Upload Study Material</h2>
+        <h2 className="text-2xl font-bold mb-4">Edit Study Material</h2>
         <form onSubmit={handleSubmit}>
           {/* Title */}
           <div className="mb-4">
@@ -132,10 +134,11 @@ session.sessionTitle
   
           {/* Submit Button */}
           <button type="submit" className="btn btn-primary w-full">
-            Upload Material
+            UpDate Material
           </button>
         </form>
       </div>
     );
   };
-export default UploeadMaterial;
+export default EditMaterial;
+

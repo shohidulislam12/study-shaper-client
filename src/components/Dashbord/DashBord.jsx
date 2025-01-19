@@ -34,7 +34,7 @@ const DashBord = () => {
             <div className="divider">Tutor</div>
             <li><NavLink to='creatsession'>Create study session</NavLink></li>
       <li><NavLink to='createdsession'>All Created Session</NavLink></li>
-      <li><NavLink to='uploadmaterials'>Your Uploaded materials</NavLink></li>
+      <li><NavLink to='uploadmaterials'> Upload materials</NavLink></li>
     <li><NavLink to='materials'> All Your materials</NavLink></li>
             {/* Sidebar for Tutor DashBord here */}
             <div className="divider">Admin</div>
