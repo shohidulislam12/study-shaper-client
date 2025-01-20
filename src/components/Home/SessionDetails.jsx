@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import useAxiousPublic from "../Shared/useAxiousPublic";
 import { useQuery } from "@tanstack/react-query";
-
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import ChekOut from "../Dashbord/student/ChekOut";
+const stripePromise = loadStripe(import.meta.env.VITE_PK);
 const SessionDetails = () => {
     const date = new Date();
     
@@ -21,7 +23,8 @@ const SessionDetails = () => {
          return <div className="loading loading-ring loading-lg"></div>;
        }
        const registrationStartDate=new Date(session.registrationStartDate)
-    
+       const disablebtn =date>registrationStartDate
+       console.log('disaaas',disablebtn)
     // const session={
     //     "title": "Advanced Chemistry Session",
     //     "tutorName": "Dr. John Doe",
@@ -61,6 +64,15 @@ const SessionDetails = () => {
     //     "registrationFee": "0",
     //     "status": "pending"
     // },
+
+  const handlebookfree=(id)=>{
+ console.log('payent free ',id)
+
+
+  
+  }
+
+
     return (
     
           
@@ -145,16 +157,26 @@ const SessionDetails = () => {
      */}
                     {/* Book Now or Registration Closed */}
                     <div className="mt-6">
-                        {session ? (
+
+                        {disablebtn ? (
                             <button
                                 className="btn w-full bg-gray-500 text-white cursor-not-allowed"
                                 disabled
                             >
                                 Registration Closed
                             </button>
-                        ) : (
-                            <button className="btn w-full bg-indigo-600 text-white hover:bg-indigo-700">
-                                Book Now
+                        ) : session.registrationFee>0?(
+                          <div>
+                                            {/* paymen */}
+                <Elements stripe={stripePromise}>
+      <ChekOut session={session}></ChekOut>
+    </Elements>
+                          </div>
+                        ):(
+                            <button
+                            onClick={()=>handlebookfree(session._id)}
+                             className="btn w-full bg-indigo-600 text-white hover:bg-indigo-700">
+                                Book Free
                             </button>
                         )}
                     </div>

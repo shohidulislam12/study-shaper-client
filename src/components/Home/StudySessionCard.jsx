@@ -28,9 +28,9 @@ const StudySessionCard = ({session}) => {
             </p>
             <div className="card-actions flex justify-between">
                 <NavLink to={`/sessiondetails/${session._id}`} className="btn bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
-                    Details
+                    ReadMore
                 </NavLink>
-                <button className={`btn ${!disablebtn?'btn-primary':'btn-warning'} btn-primary`}> {!disablebtn?'onging':'closed'}</button>
+                <button className={` font-bold  ${!disablebtn?'text-green-600':'text-red-600'} btn-primary`}> { !disablebtn?'session: onging...':'session: closed'}</button>
             </div>
         </div>
     </div>

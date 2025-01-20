@@ -23,6 +23,7 @@ import Allusers from "./Dashbord/Admin/allusers.jsx";
 import EditNote from "./Dashbord/student/EditNote.jsx";
 import UploeadMaterial from "./Dashbord/Tutor/UploeadMaterial.jsx";
 import EditMaterial from "./Dashbord/Tutor/EditMaterial.jsx";
+import Payment from "./Dashbord/student/Payment.jsx";
 
 
     const router = createBrowserRouter([
@@ -33,6 +34,10 @@ import EditMaterial from "./Dashbord/Tutor/EditMaterial.jsx";
             {
                 path:'/',
                 element:<Home></Home>
+            },
+            {
+                path:'/payment',
+                element:<Payment></Payment>
             },
             {
                 path:'/dashbord',
