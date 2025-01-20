@@ -74,6 +74,9 @@ const SessionDetails = () => {
     sessionId:session._id,
     studentEmail:user?.email,
    TutorEmail:session.tutorEmail,
+   sessionTitle:session.sessionTitle,
+   tutorName:session.tutorName,
+   tutorphoto:session.tutorphoto,
     sessionFee:'0',
     transitionId:'N/A'
 

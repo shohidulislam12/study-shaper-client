@@ -16,7 +16,8 @@ const StudySessionCard = ({session}) => {
                 className="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-gray-800 font-bold text-sm">Sale</span>
+                <span className="text-gray-800 font-bold text-sm">{session.
+registrationFee==='0'?'Free':`${session.registrationFee}$`}</span>
             </div>
         </figure>
         <div className="card-body py-4 px-5 text-center">

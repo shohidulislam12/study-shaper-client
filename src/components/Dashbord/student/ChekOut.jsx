@@ -66,11 +66,14 @@ const ChekOut = ({session}) => {
           }
         }
       })
-    if(await paymentIntent.status==='succeeded'){
+    if( paymentIntent.status==='succeeded'){
       const bookdata={
         sessionId:session._id,
         studentEmail:user?.email,
        TutorEmail:session.tutorEmail,
+       sessionTitle:session.sessionTitle,
+       tutorName:session.tutorName,
+       tutorphoto:session.tutorphoto,
         sessionFee:session.registrationFee,
         transitionId:paymentIntent?.id,
        

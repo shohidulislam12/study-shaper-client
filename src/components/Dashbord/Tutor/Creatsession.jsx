@@ -55,7 +55,7 @@ const currentDate=new Date()
       return;
     }
     if (registrationStart < currentDate) {
-      toast.error("Registration start date must be today or a future date.");
+      toast.error("Registration  start date must be tommorow a future date.");
       return;
     }    
 
