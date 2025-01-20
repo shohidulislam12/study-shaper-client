@@ -4,201 +4,250 @@ import { useQuery } from "@tanstack/react-query";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ChekOut from "../Dashbord/student/ChekOut";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthProvider";
 import { toast } from "react-toastify";
+
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
+
 const SessionDetails = () => {
-    const date = new Date();
-    
- const {user}=useContext(AuthContext)
-    const {id}=useParams()
-    const axiousPublic=useAxiousPublic()
-    const {data:session=[],isLoading,refetch} = useQuery({
-        queryKey: ['session'],
-         queryFn: async()=>{
-           const res= await axiousPublic.get(`/session/${id}`)
-           return res.data
-         }
-                  
-        })
-        if (isLoading) {
-         return <div className="loading loading-ring loading-lg"></div>;
-       }
-       const registrationStartDate=new Date(session.registrationStartDate)
-       const disablebtn =date>registrationStartDate
-       console.log('disaaas',disablebtn)
-    // const session={
-    //     "title": "Advanced Chemistry Session",
-    //     "tutorName": "Dr. John Doe",
-    //     "averageRating": 4.5,
-    //     "description": "A comprehensive session on organic chemistry for advanced students.",
-    //     "registrationStartDate": "2025-02-01T08:00:00",
-    //     "registrationEndDate": "2025-02-28T23:59:59",
-    //     "classStartTime": "2025-03-01T09:00:00",
-    //     "classEndTime": "2025-03-01T11:00:00",
-    //     "duration": 2,
-    //     "registrationFee": 20,
-    //     "reviews": [
-    //       {
-    //         "comment": "Great session, very informative.",
-    //         "rating": 5
-    //       },
-    //       {
-    //         "comment": "Good session but could be more interactive.",
-    //         "rating": 4
-    //       }
-    //     ]
-    //   }
-      
-    //   {
-    //     "_id": "678b5ea1a4eee5f2f2c72b6b",
-    //     "sessionTitle": "Sed omnis quidem sus",
-    //     "tutorName": "shohidul Islam",
-    //     "tutorEmail": "shohidulislamsifat2003@gmail.com",
-    //     "tutorphoto": "https://lh3.googleusercontent.com/a/ACg8ocKwCVTG4HAdwcleGmH8otwZv1YD0A_NJiCBJWO1kUicxeOvEqMbdw=s96-c",
-    //     "thumbnelurl": "https://i.ibb.co.com/fd9Sj50/caers.jpg",
-    //     "sessionDescription": "Laudantium non in d",
-    //     "registrationStartDate": "1996-12-21",
-    //     "registrationEndDate": "2018-04-01",
-    //     "classStartDate": "1972-01-13",
-    //     "classEndDate": "1971-04-09",
-    //     "sessionDuration": "65",
-    //     "registrationFee": "0",
-    //     "status": "pending"
-    // },
+  const date = new Date();
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const axiousPublic = useAxiousPublic();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handlebookfree=async(id)=>{
- console.log('payent free ',id)
- const bookdata={
-    sessionId:session._id,
-    studentEmail:user?.email,
-   TutorEmail:session.tutorEmail,
-   sessionTitle:session.sessionTitle,
-   tutorName:session.tutorName,
-   tutorphoto:session.tutorphoto,
-    sessionFee:'0',
-    transitionId:'N/A'
+  // Function to show the modal
+  const showModal = () => setIsModalOpen(true);
+  // Function to hide the modal
+  const closeModal = () => setIsModalOpen(false);
+  const { data: session = [], isLoading, refetch } = useQuery({
+    queryKey: ['session'],
+    queryFn: async () => {
+      const res = await axiousPublic.get(`/session/${id}`);
+      return res.data;
+    }
+  });
+//call review 
+const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQuery({
+    queryKey: ['review'],
+    queryFn: async () => {
+      const res = await axiousPublic.get(`/reviews/${id}`);
+      return res.data;
+    }
+  });
+  if (reviewLoading) {
+    return <div className="loading loading-ring loading-lg"></div>;
+  }
+  console.log('review',reviews)
 
- }
-const {data} =await axiousPublic.post('/booked-data',bookdata)
-if(data.acknowledged){
-    toast.success('booked sucess ')
-}
+
+  if (isLoading) {
+    return <div className="loading loading-ring loading-lg"></div>;
   }
 
 
-    return (
-    
-          
-            <div className="container my-16 mx-auto p-6">
-                <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
-            
-                    <h1 className="text-3xl font-bold text-indigo-600 mb-4">{session.sessionTitle}</h1>
-    
-                    {/* Tutor Details */}
-                    <div className="flex items-center mb-4">
-                        <h2 className="text-xl font-semibold text-gray-700">Tutor: </h2>
-                        <span className="ml-2 text-gray-600">{session.tutorName}</span>
-                    </div>
-                    <div>
-                <img src="https://i.ibb.co.com/XpLKwHk/download-3.jpg" alt="" />
-            </div>
-    
-                    {/* Average Rating */}
-                    <div className="flex items-center mb-4">
-                        <h3 className="text-xl font-semibold text-gray-700">Average Rating: </h3>
-                        <span className="ml-2 text-yellow-500">{session.averageRating}</span>
-                    </div>
-    
-                    {/* Session Description */}
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-gray-700">Session Description: </h3>
-                        <p className="text-gray-600">{session.description}</p>
-                    </div>
-    
-                    {/* Registration Dates */}
-                    <div className="flex items-center mb-4">
-                        <div className="mr-6">
-                            <h3 className="text-xl font-semibold text-gray-700">Registration Start Date: </h3>
-                            <p className="text-gray-600">{new Date(session.registrationStartDate).toLocaleDateString()}</p>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-700">Registration End Date: </h3>
-                            <p className="text-gray-600">{new Date(session.registrationEndDate).toLocaleDateString()}</p>
-                        </div>
-                    </div>
-    
-                    {/* Class Timing */}
-                    <div className="flex items-center mb-4">
-                        <div className="mr-6">
-                            <h3 className="text-xl font-semibold text-gray-700">Class Start Time: </h3>
-                            <p className="text-gray-600">{new Date(session.classStartTime).toLocaleTimeString()}</p>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-700">Class End Time: </h3>
-                            <p className="text-gray-600">{new Date(session.classEndTime).toLocaleTimeString()}</p>
-                        </div>
-                    </div>
-    
-                    {/* Session Duration */}
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-gray-700">Session Duration: </h3>
-                        <p className="text-gray-600">{session.duration} hours</p>
-                    </div>
-    
-                    {/* Registration Fee */}
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-gray-700">Registration Fee: </h3>
-                        <p className="text-gray-600">
-                            {session.registrationFee === 0 ? 'Free' : `$${session.registrationFee}`}
-                        </p>
-                    </div>
-    
-                    {/* Reviews */}
-                    {/* <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-gray-700">Reviews:</h3>
-                        {session.reviews.length > 0 ? (
-                            session.reviews.map((review, index) => (
-                                <div key={index} className="border-b py-3">
-                                    <p className="text-gray-600">{review.comment}</p>
-                                    <p className="text-yellow-500">Rating: {review.rating} / 5</p>
-                                </div>
-                            ))
-                        ) : (
-                            <p className="text-gray-600">No reviews yet.</p>
-                        )}
-                    </div>
-     */}
-                    {/* Book Now or Registration Closed */}
-                    <div className="mt-6">
+  const registrationStartDate = new Date(session.registrationStartDate);
+  const disablebtn = date > registrationStartDate;
+  console.log('disable button:', disablebtn);
 
-                        {disablebtn ? (
-                            <button
-                                className="btn w-full bg-gray-500 text-white cursor-not-allowed"
-                                disabled
-                            >
-                                Registration Closed
-                            </button>
-                        ) : session.registrationFee>0?(
-                          <div>
-                                            {/* paymen */}
-                <Elements stripe={stripePromise}>
-      <ChekOut session={session}></ChekOut>
-    </Elements>
-                          </div>
-                        ):(
-                            <button
-                            onClick={()=>handlebookfree(session._id)}
-                             className="btn w-full bg-indigo-600 text-white hover:bg-indigo-700">
-                                Book Free
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
-     
-         
-        );
+  const handlebookfree = async (id) => {
+    console.log('book free', id);
+    const bookdata = {
+      sessionId: session._id,
+      studentEmail: user?.email,
+      TutorEmail: session.tutorEmail,
+      sessionTitle: session.sessionTitle,
+      tutorName: session.tutorName,
+      tutorphoto: session.tutorphoto,
+      sessionFee: '0',
+      transitionId: 'N/A'
     };
+    const { data } = await axiousPublic.post('/booked-data', bookdata);
+    if (data.acknowledged) {
+      toast.success('Booked successfully');
+    }
+  };
+
+
+
+  const openmodal = () => {
+    showModal(); // Open modal to add review
+  };
+  const handleReview=async(e)=>{
+    e.preventDefault()
+    const review=e.target.review.value
+
+    const reviewData={
+        sessionId:session._id,
+        studentReview:review,
+        studentMail:user?.email,
+        studentImg:user?.photoURL,
+        username:user.displayName
+    }
+    console.log(reviewData)
+ const {data}=await axiousPublic.post('/review',reviewData)
+ console.log(data)
+ if(data.acknowledged){
+    revrefetch()
+    toast.success('review add sucessfully')
+ }
+
+setIsModalOpen(false)
+  }
+
+  return (
+    <div className="container my-16 mx-auto p-6">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-indigo-600 mb-4">{session.sessionTitle}</h1>
+
+        {/* Tutor Details */}
+        <div className="flex items-center mb-4">
+          <h2 className="text-xl font-semibold text-gray-700">Tutor: </h2>
+          <span className="ml-2 text-gray-600">{session.tutorName}</span>
+        </div>
+        <div>
+          <img src="https://i.ibb.co.com/XpLKwHk/download-3.jpg" alt="" />
+        </div>
+
+        {/* Average Rating */}
+        <div className="flex items-center mb-4">
+          <h3 className="text-xl font-semibold text-gray-700">Average Rating: </h3>
+          <span className="ml-2 text-yellow-500">{session.averageRating}</span>
+        </div>
+
+        {/* Session Description */}
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-700">Session Description: </h3>
+          <p className="text-gray-600">{session.description}</p>
+        </div>
+
+        {/* Registration Dates */}
+        <div className="flex items-center mb-4">
+          <div className="mr-6">
+            <h3 className="text-xl font-semibold text-gray-700">Registration Start Date: </h3>
+            <p className="text-gray-600">{new Date(session.registrationStartDate).toLocaleDateString()}</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-700">Registration End Date: </h3>
+            <p className="text-gray-600">{new Date(session.registrationEndDate).toLocaleDateString()}</p>
+          </div>
+        </div>
+
+        {/* Class Timing */}
+        <div className="flex items-center mb-4">
+          <div className="mr-6">
+            <h3 className="text-xl font-semibold text-gray-700">Class Start Time: </h3>
+            <p className="text-gray-600">{new Date(session.classStartTime).toLocaleTimeString()}</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-700">Class End Time: </h3>
+            <p className="text-gray-600">{new Date(session.classEndTime).toLocaleTimeString()}</p>
+          </div>
+        </div>
+
+        {/* Session Duration */}
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-700">Session Duration: </h3>
+          <p className="text-gray-600">{session.duration} hours</p>
+        </div>
+
+        {/* Registration Fee */}
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-700">Registration Fee: </h3>
+          <p className="text-gray-600">
+            {session.registrationFee === 0 ? 'Free' : `$${session.registrationFee}`}
+          </p>
+        </div>
+
+        {/* Reviews */}
+        <div className="mb-4 flex justify-center items-center gap-5">
+          <h3 className="text-xl font-semibold text-gray-700">Reviews:</h3>
+          <button onClick={ openmodal} className="btn btn-sm">Add Review</button>
+        </div>
+    {    reviews.length>0? <div className="h-40 overflow-scroll">
+         {
+            reviews.map((review,i)=>
+                <div className="">
+  {/* Comment Section */}
+  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+    <div className="flex items-start mb-4">
+      {/* User Image */}
+     
+      <img
+        src={review.studentImg}
+        alt="User"
+        className="w-12 h-12 rounded-full mr-4"
+      />
+      
+      <div>
+        {/* User Name */}
+        <h3 className="text-lg font-semibold text-gray-800">{review.username}</h3>
+        
+    
+        <p className="text-gray-600 mt-2">{review.studentReview}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+            )
+         }
+
+
+
+        </div>:<p className="text-2xl text-red-400 font-semibold">No Review Available </p>}
+
+        {/* Book Now or Registration Closed */}
+        <div className="mt-6">
+          {disablebtn ? (
+            <button className="btn w-full bg-gray-500 text-white cursor-not-allowed" disabled>
+              Registration Closed
+            </button>
+          ) : session.registrationFee > 0 ? (
+            <div>
+              {/* Payment */}
+              <Elements stripe={stripePromise}>
+                <ChekOut session={session} />
+              </Elements>
+            </div>
+          ) : (
+            <button
+              onClick={() => handlebookfree(session._id)}
+              className="btn w-full bg-indigo-600 text-white hover:bg-indigo-700">
+              Book Free
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Modal for Review */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">Add Review</h2>
+              <button onClick={closeModal} className="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="space-y-4">
+              {/* Add Review Content Goes Here */}
+              <form onSubmit={handleReview} className="card-body">
+              <textarea name='review' className="w-full p-2 border rounded" placeholder="Write your review here..." />
+              <button type="submit"  className="btn btn-primary w-full">Submit Review</button>
+      </form>
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button onClick={closeModal} className="btn btn-warning">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default SessionDetails;
