@@ -4,11 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ChekOut from "../Dashbord/student/ChekOut";
+import { useContext } from "react";
+import { AuthContext } from "../Authprovider/AuthProvider";
+import { toast } from "react-toastify";
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
 const SessionDetails = () => {
     const date = new Date();
     
- 
+ const {user}=useContext(AuthContext)
     const {id}=useParams()
     const axiousPublic=useAxiousPublic()
     const {data:session=[],isLoading,refetch} = useQuery({
@@ -65,11 +68,20 @@ const SessionDetails = () => {
     //     "status": "pending"
     // },
 
-  const handlebookfree=(id)=>{
+  const handlebookfree=async(id)=>{
  console.log('payent free ',id)
+ const bookdata={
+    sessionId:session._id,
+    studentEmail:user?.email,
+   TutorEmail:session.tutorEmail,
+    sessionFee:'0',
+    transitionId:'N/A'
 
-
-  
+ }
+const {data} =await axiousPublic.post('/booked-data',bookdata)
+if(data.acknowledged){
+    toast.success('booked sucess ')
+}
   }
 
 

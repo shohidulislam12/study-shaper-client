@@ -66,9 +66,27 @@ const ChekOut = ({session}) => {
           }
         }
       })
-    if(paymentIntent.status==='succeeded'){
-     return toast.success('payment sucess ')
+    if(await paymentIntent.status==='succeeded'){
+      const bookdata={
+        sessionId:session._id,
+        studentEmail:user?.email,
+       TutorEmail:session.tutorEmail,
+        sessionFee:session.registrationFee,
+        transitionId:paymentIntent?.id,
+       
+    
+     }
+     console.log(paymentIntent)
+    const {data} =await axiousPublic.post('/booked-data',bookdata)
+    if(data.acknowledged){
+      console.log(data)
+        toast.success('payment sucess and booked ')
     }
+      }
+    
+
+
+
     };
 
     return (
