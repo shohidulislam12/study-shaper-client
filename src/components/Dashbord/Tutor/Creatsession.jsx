@@ -61,7 +61,7 @@ const currentDate=new Date()
 
 
     const formData={sessionTitle,tutorName,tutorEmail,tutorphoto,thumbnelurl,sessionDescription,registrationStartDate,registrationEndDate,classStartDate,classEndDate,sessionDuration,registrationFee,status}
-    console.log(formData)
+    //console.log(formData)
     //save data in database
     const {data}=await axiousPublic.post('/allsession',formData)
     if(data.insertedId){
@@ -70,7 +70,7 @@ const currentDate=new Date()
     else(
         toast.error('Sorr,there is an irror')
     )
-    console.log(data)
+   // console.log(data)
   };
 
   return (

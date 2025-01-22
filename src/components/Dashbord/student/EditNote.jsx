@@ -17,7 +17,7 @@ useEffect(()=>{
     axiousPublic.get(`/getssnote/${id}`)
     .then(res=>{
         setnote(res.data)
-        console.log(res.data)
+       // console.log(res.data)
     })
 },[id])
       const handleSubmit = async (event) => {
@@ -29,9 +29,9 @@ useEffect(()=>{
         const description = description1;
     
         const noteData = { title, description };
-        console.log(noteData)
+      //  console.log(noteData)
       const {data}=await axiousPublic.patch(`/updatenote/${id}`,noteData)
-    console.log(data)
+   // console.log(data)
     if(data.acknowledged){
         navigate(-1)
       toast.success('note created  sucess')

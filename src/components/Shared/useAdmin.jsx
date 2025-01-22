@@ -11,7 +11,7 @@ const {data:isadmin}=useQuery({
 queryKey:[user?.email,'isadmin'],
 queryFn:async()=>{
     const res=await axiousSecure(`/user/admin/${user.email}`)
-    console.log(res.data)
+    //console.log(res.data)
     return res.data.admin
 }
 })

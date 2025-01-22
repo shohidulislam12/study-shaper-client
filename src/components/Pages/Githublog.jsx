@@ -8,14 +8,14 @@ const Githublog = () => {
     const location=useLocation()
     const navigate=useNavigate()
 const from=location?.state||'/'
-console.log(location)
+//console.log(location)
     const handleGithub=()=>{
         githubLogin()
         .then((user) => {
             navigate(from)
-           console.log(user)
+          // console.log(user)
           }).catch((error) => {
-            console.log(error)
+           // console.log(error)
           });
         
         

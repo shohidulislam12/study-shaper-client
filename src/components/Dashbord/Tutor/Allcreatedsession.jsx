@@ -48,7 +48,7 @@ const Allcreatedsession = () => {
           .then((res) => {
             refetch();
             toast.success("role updated sucessfully");
-            console.log(res.data);
+           // console.log(res.data);
           });
         Swal.fire({
           title: "Deleted!",

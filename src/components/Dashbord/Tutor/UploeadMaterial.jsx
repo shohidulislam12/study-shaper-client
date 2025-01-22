@@ -15,28 +15,30 @@ const UploeadMaterial = () => {
         axiousPublic.get(`/session/${id}`)
         .then(res=>{
             setsession(res.data)
-            console.log(res.data)
+           // console.log(res.data)
         })
     },[id])
     const handleSubmit=async(e)=>{
         e.preventDefault()
         const links=e.target.link.value
         const linkarray=links.split(',')
-         const drivephoto= await photoURL(image)
+        const photolinks=e.target.image.value
+        const photolinkarray=photolinks.split(',')
+       
          const noteData={
             teacherEmail:user.email,
             sessionId:id,
-            drivephoto,
-            linkarray,
+    
+            linkarray,photolinkarray,
             
 sessionTitle:
 session.sessionTitle
 
          }
-         console.log(noteData)
+         //console.log(noteData)
         
        const {data}=await axiousPublic.post('/allmaterial',noteData)
-     console.log(data)
+  //   console.log(data)
      if(data.acknowledged){
        toast.success('Material created  sucess')
      }
@@ -44,7 +46,7 @@ session.sessionTitle
        }
 
     
-    console.log(session)
+  //  console.log(session)
     return (
         <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Upload Study Material</h2>
@@ -98,23 +100,22 @@ session.sessionTitle
               className="input input-bordered w-full bg-gray-100"
             />
           </div>
+
   
-          {/* Image Upload */}
+          {/* image Link */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1" htmlFor="image">
-              Upload Image
+            <label className="block text-sm font-medium mb-1" htmlFor="link">
+              Image Link (separate by comma)
             </label>
-            <input
-             onChange={(e)=>setImage(e.target.files[0])}
-              type="file"
+            <textarea
+              type="link"
               id="image"
               name="image"
-              accept="image/*"
-             
-              className="file-input file-input-bordered w-full"
+              required
+              placeholder="Enter Google Drive link by comma "
+              className="input input-bordered w-full"
             />
           </div>
-  
           {/* Link */}
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1" htmlFor="link">

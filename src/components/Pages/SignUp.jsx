@@ -13,8 +13,7 @@ const SignUp = () => {
     const axiousPublic=useAxiousPublic()
     const location=useLocation()
 const from=location?.state||'/'
-console.log(location)
-console.log("sss",location?.state)
+
     const handleSignUp=async (e)=>{
         e.preventDefault()
         const form=e.target
@@ -24,7 +23,7 @@ console.log("sss",location?.state)
             return;
         }
       const photourl= await photoURL(photo)
-      console.log("url from js",photourl)
+
         const email=form.email.value
         const password=form.password.value
         const role=form.role.value
@@ -32,7 +31,7 @@ console.log("sss",location?.state)
       // firebase creat user
       creatuserUsingMailPass(email,password)
       .then((user) => {
-        console.log(user)
+
         //updateprofile
        updateProfice(name,photourl)
         .then(() => {
@@ -48,17 +47,17 @@ console.log("sss",location?.state)
       axiousPublic.post('/users',userData)
       .then(res=>{
         if(res){
-        console.log(res)
+     
         }
       })
-            console.log('sucess')
+          //  console.log('sucess')
           }).catch((error) => {
-           console.log(error)
+           //console.log(error)
           });
 
       })
       .catch((error) => {
-        console.log(error.message)
+      //  console.log(error.message)
       });
     
     }

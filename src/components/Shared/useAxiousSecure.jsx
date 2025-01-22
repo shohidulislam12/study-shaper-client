@@ -12,9 +12,9 @@ const useAxiousSecure = () => {
     //requast interceptor 
     axiousSecure.interceptors.request.use(function(config){
         const token=localStorage.getItem('token')
-        console.log(token)
+      //  console.log(token)
         config.headers.authorization=`bearer ${token}`
-console.log('request stooped by interceptortr')
+//console.log('request stooped by interceptortr')
 return config
     },function(error){
         return Promise.reject(error)
@@ -23,7 +23,7 @@ return config
 axiousSecure.interceptors.response.use(function(responce){
     return responce
 },async function(error){
-    console.log('error core',error.status)
+ //   console.log('error core',error.status)
     const status=error.status
     if(status===401||status===403){
        await handlesignOut()

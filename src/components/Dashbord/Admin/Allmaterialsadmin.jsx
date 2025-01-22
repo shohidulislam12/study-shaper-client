@@ -25,7 +25,7 @@ const Allmaterialsadmin = () => {
     if (isLoading) {
       return <div className="loading loading-ring loading-lg"></div>;
     }
-    console.log(materials)
+ 
     const handleDelete=(id)=>{
         //
         Swal.fire({
@@ -38,9 +38,9 @@ const Allmaterialsadmin = () => {
             confirmButtonText: "Yes, delete it!"
           }).then(async(result) => {
             if (result.isConfirmed) {
-                console.log(id)
+             
                 const{data}=await axiousPublic.delete(`/deletematerial/${id}`)
-                console.log(data)
+             
                 if(data.acknowledged){
                     refetch()
                  Swal.fire({

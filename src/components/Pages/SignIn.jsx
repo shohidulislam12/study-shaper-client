@@ -10,17 +10,17 @@ const SignIn = () => {
 const navigate=useNavigate()
 const location=useLocation()
 const from=location?.state||'/'
-console.log(location)
-console.log("ssssignin",location?.state)
+//console.log(location)
+//console.log("ssssignin",location?.state)
     const handleSignin= (e)=>{
         e.preventDefault()
         const form=e.target    
         const email=form.email.value
         const password=form.password.value
-        console.log(email,password)
+     //   console.log(email,password)
         signInWithMailPass(email ,password)
         .then((user) => {
-       console.log(user)
+     //  console.log(user)
        navigate(from)
        return toast.success('sign in sucessfully')
           })

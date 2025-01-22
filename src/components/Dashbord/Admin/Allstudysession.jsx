@@ -1,17 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from "react";
+import { FaCloudUploadAlt, FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiousPublic from "../../Shared/useAxiousPublic";
 import { AuthContext } from "../../Authprovider/AuthProvider";
 import { VscPreview } from "react-icons/vsc";
+import { FaTrash } from "react-icons/fa6";
+import useAxiousSecure from "../../Shared/useAxiousSecure";
+import { toast } from "react-toastify";
 
 const Allstudysession = () => {
   const { user } = useContext(AuthContext);
   const axiousPublic = useAxiousPublic();
+  const axiousSecure=useAxiousSecure()
   const [status, setSelestatus] = useState("pending");
   const [amount, setAmount] = useState('0');
-  const [selectedOption, setSelectedOption] = useState(""); // Track free or paid selection
+  const [selectedOption, setSelectedOption] = useState("");
+  const [rejectreson, setrejectreson] = useState("");
+useEffect(()=>{
+  if(status!=='reject'){
+    setrejectreson('N/A')
+    }
+},[status])
+
   const {
     data: sessions = [],
     isLoading,
@@ -37,12 +48,11 @@ const Allstudysession = () => {
       Swal.fire("Error", "Please select a status!", "error");
       return;
     }
-
+ 
     if (!selectedOption) {
       Swal.fire("Error", "Please select Free or Paid!", "error");
       return;
     }
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -56,12 +66,12 @@ const Allstudysession = () => {
         axiousPublic
           .patch(`/updatestatus/${id}`, {
             status,
-        
+            rejectreson:rejectreson,
             registrationFee:amount
           })
           .then((res) => {
             refetch();
-            console.log(res)
+        
             Swal.fire({
               title: "Updated!",
               text: "Session status updated successfully.",
@@ -70,7 +80,34 @@ const Allstudysession = () => {
           });
       }
     });
+
   };
+ 
+  //delete session 
+  const handleDelete=async (id)=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+       
+        const {data}=await axiousSecure.delete(`/sessiondelete/${id}`)
+     
+            refetch();
+            Swal.fire({
+              title: "Updated!",
+              text: "Session deletesuccessfully.",
+              icon: "success",
+            });
+       
+      }
+    });
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -92,7 +129,9 @@ const Allstudysession = () => {
               <td>{session.sessionTitle}</td>
               <td>{session.registrationFee}</td>
               <td>{session.status}</td>
-              <td className="flex gap-2">
+              <td className="flex items-center  gap-2">
+        
+
                 <button
                   className="btn"
                   onClick={() =>
@@ -164,19 +203,44 @@ const Allstudysession = () => {
                         </select>
                       </div>
                     </div>
+                    { status==='reject'&&
+                       <form className="card-body">
+                       <div className="form-control">
+                         <label className="label">
+                           <span className="label-text">REject reson</span>
+                         </label>
+                         <input type="text" onChange={(e)=>setrejectreson(e.target.value)}  placeholder="write reject reason" className="input input-bordered" required />
+                       </div>
+                       
+                     </form>
+                    }
                     {/* Modal Actions */}
                     <div className="modal-action">
                       <form method="dialog">
                         <button
                           onClick={() => handlestartus(session._id)}
-                          className="btn btn-primary btn-xs"
+                          className="btn btn-primary "
                         >
-                          Update Status
+                          Ok
                         </button>
                       </form>
                     </div>
                   </div>
                 </dialog>
+                <FaTrash  onClick={()=>{
+                  handleDelete(session._id)
+                }} className={`text-red-500 ${session.status !== 'approve' ? 'disabled' : ''}`}></FaTrash>
+                          <button
+                  className={`text-red-500 ${session.status !== 'approve' ? 'disabled' : ''}`}
+                  onClick={() =>
+                    document
+                      .getElementById(`my_modal_${session._id}`)
+                      .showModal()
+                  }
+                >
+                  <FaEdit />
+                </button>
+              
               </td>
             </tr>
           ))}

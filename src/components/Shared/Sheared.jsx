@@ -11,6 +11,6 @@ import axios from "axios"
         }
     })
     const link=data?.data?.display_url
-       console.log(link)
+      // console.log(link)
 return link
 }

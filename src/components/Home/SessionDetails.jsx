@@ -39,7 +39,7 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
   if (reviewLoading) {
     return <div className="loading loading-ring loading-lg"></div>;
   }
-  console.log('review',reviews)
+  //console.log('review',reviews)
 
 
   if (isLoading) {
@@ -49,10 +49,10 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
 
   const registrationStartDate = new Date(session.registrationStartDate);
   const disablebtn = date > registrationStartDate;
-  console.log('disable button:', disablebtn);
+ // console.log('disable button:', disablebtn);
 
   const handlebookfree = async (id) => {
-    console.log('book free', id);
+  //  console.log('book free', id);
     const bookdata = {
       sessionId: session._id,
       studentEmail: user?.email,
@@ -85,9 +85,9 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
         studentImg:user?.photoURL,
         username:user.displayName
     }
-    console.log(reviewData)
+   // console.log(reviewData)
  const {data}=await axiousPublic.post('/review',reviewData)
- console.log(data)
+ //console.log(data)
  if(data.acknowledged){
     revrefetch()
     toast.success('review add sucessfully')

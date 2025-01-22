@@ -24,7 +24,7 @@ const Uploadmaterials = () => {
     return <div className="loading loading-ring loading-lg"></div>;
   }
 const approve=sessions.filter((session)=>session.status==='approve')
-console.log(approve)
+//console.log(approve)
  
   const handlestatus = (id) => {
     if (!setSelestatus) {
@@ -50,7 +50,7 @@ console.log(approve)
           .then((res) => {
             refetch();
             toast.success("role updated sucessfully");
-            console.log(res.data);
+           // console.log(res.data);
           });
         Swal.fire({
           title: "Deleted!",

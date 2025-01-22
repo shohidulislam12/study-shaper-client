@@ -21,7 +21,7 @@ const Allmaterials = () => {
     if (isLoading) {
       return <div className="loading loading-ring loading-lg"></div>;
     }
-    console.log(materials)
+  //  console.log(materials)
     const handleDelete=(id)=>{
         //
         Swal.fire({
@@ -34,9 +34,9 @@ const Allmaterials = () => {
             confirmButtonText: "Yes, delete it!"
           }).then(async(result) => {
             if (result.isConfirmed) {
-                console.log(id)
+            //    console.log(id)
                 const{data}=await axiousPublic.delete(`/deletematerial/${id}`)
-                console.log(data)
+             //   console.log(data)
                 if(data.acknowledged){
                     refetch()
                  Swal.fire({
@@ -63,15 +63,12 @@ const Allmaterials = () => {
                 <span className="font-semibold">Session ID:</span> {material.sessionId}
               </p>
             </div>
-      
-            {/* Image */}
-            <div className="card-image">
-              <img
-                src={material.drivephoto}
-                alt={material.sessionTitle}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            </div>
+         <div className="flex overflow-scroll">
+         {material.photolinkarray
+.map((link, i) => (
+                    <img src={link} alt="" />
+                  ))}
+         </div>
       
             {/* Links */}
             <div className="card-body p-4">

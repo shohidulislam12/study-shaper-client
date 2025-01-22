@@ -17,13 +17,13 @@ const ChekOut = ({session}) => {
     try{
          const {data} =await axiousPublic.post('/creatpayment-intent',{sessionid:session._id,registrationFee:session.registrationFee})
          setsecret(data.client_secret)
-         console.log('data',data.client_secret)
+    
     }
     catch{
 
     }
   }
-  console.log(secret)
+
     const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
@@ -50,9 +50,9 @@ const ChekOut = ({session}) => {
       });
   
       if (error) {
-        console.log('[error]', error);
+ 
       } else {
-        console.log('[PaymentMethod]', paymentMethod);
+       // console.log('[PaymentMethod]', paymentMethod);
       }
       //confirm payment
     const{
@@ -79,10 +79,10 @@ const ChekOut = ({session}) => {
        
     
      }
-     console.log(paymentIntent)
+     //console.log(paymentIntent)
     const {data} =await axiousPublic.post('/booked-data',bookdata)
     if(data.acknowledged){
-      console.log(data)
+    //  console.log(data)
         toast.success('payment sucess and booked ')
     }
       }

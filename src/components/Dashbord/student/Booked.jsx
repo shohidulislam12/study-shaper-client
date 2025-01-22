@@ -22,7 +22,7 @@ const {user}=useContext(AuthContext)
         if (isLoading) {
          return <div className="loading loading-ring loading-lg"></div>;
        }
-console.log(booked)
+//console.log(booked)
 
     return (
         <div className="overflow-x-auto">

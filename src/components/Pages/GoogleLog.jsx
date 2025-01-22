@@ -13,13 +13,13 @@ const GoogleLog = () => {
     const navigate=useNavigate()
     const location=useLocation()
 const from=location?.state||'/'
-console.log(location)
+//console.log(location)
     const handleGoogle=()=>{
-        console.log('google')
+       // console.log('google')
         googleLogin()
         .then((result) => {
             navigate(from)
-            console.log(result.user)
+           // console.log(result.user)
             const userData = {
                 name: result.user.displayName, // Fixed: Use `displayName` for user's name
                 email: result.user.email, // Include email as a best practice

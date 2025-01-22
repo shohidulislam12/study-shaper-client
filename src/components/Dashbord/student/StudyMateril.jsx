@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Authprovider/AuthProvider";
 import useAxiousPublic from "../../Shared/useAxiousPublic";
 import { useQuery } from "@tanstack/react-query";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaDownload, FaEdit, FaTrash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 
@@ -20,7 +20,7 @@ const StudyMateril = () => {
         if (isLoading) {
          return <div className="loading loading-ring loading-lg"></div>;
        }
-console.log(booked)
+//console.log('booked',booked)
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {booked.map((material, index) => (
@@ -35,15 +35,30 @@ console.log(booked)
               </p>
             </div>
       
-            {/* Image */}
-            <div className="card-image">
-              <img
-                src={material?.materials[0]?.drivephoto
-                }
-                alt={'material.sessionTitle'}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            </div>
+{/* Image */}
+<div className="card-image  overflow-scroll flex space-x-2">
+  {material?.materials[0]?.photolinkarray.map((link, i) => (
+    <div key={i} className="relative  ">
+      {/* Image */}
+      <img
+        src={link}
+        alt={`Image-${i + 1}`}
+        className="w-full h-full object-cover rounded"
+      />
+
+      {/* Download Button */}
+      <a
+        href={link} // Set the link to the image URL
+        download={`image-${i + 1}`} // Specify a default filename for download
+        className="absolute top-2 right-2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 transition"
+        title="Download Image"
+      >
+        <FaDownload></FaDownload>
+      </a>
+    </div>
+  ))}
+</div>
+
       
             {/* Links */}
             <div className="card-body p-4">
