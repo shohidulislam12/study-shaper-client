@@ -4,15 +4,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../Authprovider/AuthProvider";
 import { FaCodePullRequest } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import useAxiousSecure from "../../Shared/useAxiousSecure";
 
 
 const Booked = () => {
 const {user}=useContext(AuthContext)
     const axiousPublic=useAxiousPublic()
+    const axiousSecure=useAxiousSecure()
     const {data:booked=[],isLoading,refetch} = useQuery({
         queryKey: ['booked'],
          queryFn: async()=>{
-           const res= await axiousPublic.get(`/bookingdata/${user.email}`)
+           const res= await axiousSecure.get(`/bookingdata/${user.email}`)
            return res.data
          }
                   

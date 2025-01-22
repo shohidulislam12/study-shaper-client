@@ -8,10 +8,12 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiousPublic from "../../Shared/useAxiousPublic";
 import { AuthContext } from "../../Authprovider/AuthProvider";
+import useAdmin from "../../Shared/useAdmin";
 
 
 const Allmaterialsadmin = () => {
     const {user}=useContext(AuthContext)
+    const [isadmin]=useAdmin()
     const axiousPublic = useAxiousPublic();
     const { data: materials = [], isLoading,refetch } = useQuery({
       queryKey: ["materials",user],
@@ -97,13 +99,7 @@ const Allmaterialsadmin = () => {
       
             {/* Actions */}
             <div className="card-footer p-4 flex gap-3 justify-between items-center border-t border-gray-200">
-              <NavLink
-                to={`material/${material._id}`}
-                className="btn btn-primary btn-sm"
-              >
-                <FaEdit className="mr-1" />
-                Edit
-              </NavLink>
+        
               <button
                 className="btn btn-warning btn-sm"
                 onClick={() => handleDelete(material._id)}

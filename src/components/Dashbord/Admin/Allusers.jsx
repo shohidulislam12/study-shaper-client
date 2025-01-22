@@ -4,9 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import useAxiousSecure from '../../Shared/useAxiousSecure';
 
 const Allusers = () => {
     const axiousPublic=useAxiousPublic()
+    const axiousSecure=useAxiousSecure()
     const [selectedRole, setSelectedRole] = useState("")
     const [search,setsearch]=useState('')
 const {data:users=[],isLoading,refetch} = useQuery({
@@ -40,7 +42,7 @@ const handlerole=(user)=>{
       }).then((result) => {
         if (result.isConfirmed) {
            
-          axiousPublic.patch(`/updateuserole/${user.email}`,{role:selectedRole})
+          axiousSecure.patch(`/updateuserole/${user.email}`,{role:selectedRole})
           .then(res=>{
             refetch()
             toast.success('role updated sucessfully')
