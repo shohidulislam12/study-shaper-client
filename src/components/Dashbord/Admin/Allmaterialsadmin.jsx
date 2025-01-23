@@ -58,7 +58,7 @@ const Allmaterialsadmin = () => {
     }
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        {materials.map((material, index) => (
+   {materials.map((material, index) => (
           <div
             key={material._id}
             className="card shadow-lg rounded-lg border border-gray-200 bg-white"
@@ -69,15 +69,12 @@ const Allmaterialsadmin = () => {
                 <span className="font-semibold">Session ID:</span> {material.sessionId}
               </p>
             </div>
-      
-            {/* Image */}
-            <div className="card-image">
-              <img
-                src={material.drivephoto}
-                alt={material.sessionTitle}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            </div>
+         <div className="flex h-36 overflow-scroll">
+         {material.photolinkarray
+.map((link, i) => (
+                    <img className="" src={link} alt="" />
+                  ))}
+         </div>
       
             {/* Links */}
             <div className="card-body p-4">
@@ -100,9 +97,9 @@ const Allmaterialsadmin = () => {
             </div>
       
             {/* Actions */}
-            <div className="card-footer p-4 flex gap-3 justify-between items-center border-t border-gray-200">
-        
-              <button
+            <div className="card-footer p-4 flex justify-between items-center border-t border-gray-200">
+             
+            <button
                 className="btn btn-warning btn-sm"
                 onClick={() => handleDelete(material._id)}
               >
