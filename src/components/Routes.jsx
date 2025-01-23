@@ -27,12 +27,14 @@ import Payment from "./Dashbord/student/Payment.jsx";
 import TutorPrivet from "./Dashbord/Tutor/TutorPrivet.jsx";
 import StudentPrivet from "./Dashbord/student/StudentPrivet.jsx";
 import AdminPrivet from "./Dashbord/Admin/AdminPrivet.jsx";
+import ErrorElement from "./ErrorElement.jsx";
 
 
     const router = createBrowserRouter([
         {
           path: "/",
           element:<Main></Main>,
+          errorElement:<ErrorElement></ErrorElement>,
           children:[
             {
                 path:'/',
