@@ -6,7 +6,7 @@ This repository includes the **frontend** and **backend** for the StudyShaper pl
 
 ## Live Site
 
-- [StudyShaper Live](https://study-sphere-sever.vercel.app/) - View the live version of the application.
+- [StudyShaper Live](https://rebase-concept-1.web.app/) - View the live version of the application.
 
 ## Admin Credentials
 
