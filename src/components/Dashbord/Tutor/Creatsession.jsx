@@ -3,12 +3,16 @@ import { AuthContext } from '../../Authprovider/AuthProvider';
 import useAxiousPublic from '../../Shared/useAxiousPublic';
 import { toast } from 'react-toastify';
 import { photoURL } from '../../Shared/Sheared';
+import useAxiousSecure from '../../Shared/useAxiousSecure';
+import { useNavigate } from 'react-router-dom';
 
 
 const Creatsession = () => {
+  const navigate=useNavigate()
   const [photo,setPhoto]=useState(null)
   const { user } = useContext(AuthContext);
 const axiousPublic=useAxiousPublic()
+const axiousSecure=useAxiousSecure()
 const currentDate=new Date()
   const handleSubmit = async(event) => {
 
@@ -63,8 +67,9 @@ const currentDate=new Date()
     const formData={sessionTitle,tutorName,tutorEmail,tutorphoto,thumbnelurl,sessionDescription,registrationStartDate,registrationEndDate,classStartDate,classEndDate,sessionDuration,registrationFee,status}
     //console.log(formData)
     //save data in database
-    const {data}=await axiousPublic.post('/allsession',formData)
+    const {data}=await axiousSecure.post('/allsession',formData)
     if(data.insertedId){
+    navigate('/dashbord/createdsession')
  toast.success('Session Creat Sucess')
     }
     else(
@@ -232,7 +237,7 @@ const currentDate=new Date()
           <input
             type="text"
             name="status"
-            value="Pending"
+            value="pending"
             readOnly
             className="input input-bordered w-full"
           />

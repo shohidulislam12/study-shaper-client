@@ -17,9 +17,11 @@ const Allstudysession = () => {
   const [amount, setAmount] = useState('0');
   const [selectedOption, setSelectedOption] = useState("");
   const [rejectreson, setrejectreson] = useState("");
+  const [feedback, setFeedback] = useState("");
 useEffect(()=>{
   if(status!=='reject'){
     setrejectreson('N/A')
+    setFeedback('N/A')
     }
 },[status])
 
@@ -30,7 +32,7 @@ useEffect(()=>{
   } = useQuery({
     queryKey: ["session"],
     queryFn: async () => {
-      const res = await axiousPublic.get(`/allsession`);
+      const res = await axiousSecure.get(`/allsessionadmin`);
       return res.data;
     },
   });
@@ -48,8 +50,9 @@ useEffect(()=>{
       Swal.fire("Error", "Please select a status!", "error");
       return;
     }
+
  
-    if (!selectedOption) {
+    if ( status!=='reject' && !selectedOption) {
       Swal.fire("Error", "Please select Free or Paid!", "error");
       return;
     }
@@ -63,10 +66,11 @@ useEffect(()=>{
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiousPublic
+        axiousSecure
           .patch(`/updatestatus/${id}`, {
             status,
             rejectreson:rejectreson,
+            feedback:feedback,
             registrationFee:amount
           })
           .then((res) => {
@@ -132,7 +136,7 @@ useEffect(()=>{
               <td className="flex items-center  gap-2">
         
 
-                <button
+         {session.status === 'pending'  &&  <button
                   className="btn"
                   onClick={() =>
                     document
@@ -141,7 +145,7 @@ useEffect(()=>{
                   }
                 >
                   <VscPreview />
-                </button>
+                </button>}
                 <dialog
                   id={`my_modal_${session._id}`}
                   className="modal modal-bottom sm:modal-middle"
@@ -207,9 +211,15 @@ useEffect(()=>{
                        <form className="card-body">
                        <div className="form-control">
                          <label className="label">
-                           <span className="label-text">REject reson</span>
+                           <span className="label-text">Reject reson</span>
                          </label>
                          <input type="text" onChange={(e)=>setrejectreson(e.target.value)}  placeholder="write reject reason" className="input input-bordered" required />
+                       </div>
+                       <div className="form-control">
+                         <label className="label">
+                           <span className="label-text">Feedback</span>
+                         </label>
+                         <input type="text" onChange={(e)=>setFeedback(e.target.value)}  placeholder="write reject reason" className="input input-bordered" required />
                        </div>
                        
                      </form>
@@ -227,19 +237,19 @@ useEffect(()=>{
                     </div>
                   </div>
                 </dialog>
-                <FaTrash  onClick={()=>{
+               {session.status == 'approve' && <FaTrash  onClick={()=>{
                   handleDelete(session._id)
-                }} className={`text-red-500 ${session.status !== 'approve' ? 'disabled' : ''}`}></FaTrash>
-                          <button
-                  className={`text-red-500 ${session.status !== 'approve' ? 'disabled' : ''}`}
+                }} className={`text-red-500 `}></FaTrash>}
+                        {session.status == 'approve'&& <button
+                  className={`text-red-500 `}
                   onClick={() =>
                     document
                       .getElementById(`my_modal_${session._id}`)
                       .showModal()
                   }
                 >
-                  <FaEdit />
-                </button>
+                  <FaEdit className="text-green-600" />
+                </button>}
               
               </td>
             </tr>

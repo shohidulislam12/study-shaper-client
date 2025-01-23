@@ -99,7 +99,7 @@ const from=location?.state||'/'
                             <select name="role" id="cars">
     <option value="student">Student</option>
     <option value="tutor">Tutor</option>
-    <option value="administrator">Administrator</option>
+    <option value="adminRequest"> Requiest As Admin</option>
 
   </select>
 

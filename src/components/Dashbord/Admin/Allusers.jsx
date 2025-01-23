@@ -14,7 +14,7 @@ const Allusers = () => {
 const {data:users=[],isLoading,refetch} = useQuery({
    queryKey: ['users',search],
     queryFn: async()=>{
-      const res= await axiousPublic.get(`/users?search=${search}`)
+      const res= await axiousSecure.get(`/users?search=${search}`)
       return res.data
     }
              
@@ -37,7 +37,7 @@ const handlerole=(user)=>{
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Yes, Update it!",
        
       }).then((result) => {
         if (result.isConfirmed) {
@@ -128,7 +128,7 @@ const handlerole=(user)=>{
 <select  className='p-4 border border-blue-600' onChange={(e) => setSelectedRole(e.target.value)} name="role" id="cars">
     <option value="student">Student</option>
     <option value="tutor">Tutor</option>
-    <option value="administrator">Administrator</option>
+    <option value="admin">Admin</option>
 
   </select>
 </div>

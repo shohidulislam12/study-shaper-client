@@ -6,12 +6,12 @@ This repository includes the **frontend** and **backend** for the StudyShaper pl
 
 ## Live Site
 
-- [StudyShaper Live](https://your-live-site-url.com) - View the live version of the application.
+- [StudyShaper Live](https://study-sphere-sever.vercel.app/) - View the live version of the application.
 
 ## Admin Credentials
 
-- **Username**: `admin@example.com`
-- **Password**: `admin123`
+- **Username**: `sifat20003@gmail.com`
+- **Password**: `sifatsifat`
 
 ---
 
@@ -27,7 +27,7 @@ This repository includes the **frontend** and **backend** for the StudyShaper pl
 - **Stripe**: For payment processing (optional for paid sessions).
 
 ### Backend:
-
+- [StudyShaper Live](https://study-sphere-sever.vercel.app/) - View the serverlive
 - **Node.js**: JavaScript runtime for server-side programming.
 - **Express.js**: Framework for building web servers.
 - **MongoDB**: NoSQL database for storing session and review data.

@@ -49,8 +49,7 @@ const approve=sessions.filter((session)=>session.status==='approve')
           })
           .then((res) => {
             refetch();
-            toast.success("role updated sucessfully");
-           // console.log(res.data);
+           
           });
         Swal.fire({
           title: "Deleted!",
@@ -81,66 +80,7 @@ const approve=sessions.filter((session)=>session.status==='approve')
               <td>{session.registrationFee}</td>
               <td>{session.status}</td>
               <td className="flex gap-2 ">
-                {/* Open the modal using document.getElementById('ID').showModal() method */}
-                <button
-                  className="btn"
-                  onClick={() =>
-                    document
-                      .getElementById(`my_modal_${session._id}`)
-                      .showModal()
-                  }
-                >
-                  <FaCodePullRequest />
-                </button>
-                <dialog
-                  id={`my_modal_${session._id}`}
-                  className="modal modal-bottom sm:modal-middle"
-                >
-                  <div className="modal-box">
-                    <h3 className="font-bold text-lg">Sent Requist Again </h3>
-                    {/* <div className="mt-4">
-                      <label className="block text-sm mb-1">Amount:</label>
-                      <input
-                        type="number"
-                        className="input input-bordered w-full"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        placeholder="Enter amount"
-                        min="0"
-                      />
-                    </div> */}
-                    <div className="flex justify-center flex-col items-center">
-                      <div className="flex justify-center gap-5 items-center ">
-                        {/* <span className="text-2xl ">Status : </span> */}
-                        <select
-                          className="p-4  border border-blue-600"
-                          onChange={(e) => setSelestatus(e.target.value)}
-                          name="role"
-                          id="cars"
-                          value={status}
-                        >
-                          <option value="pending" >resent requist for Aprove</option>
-                          {/* <option value="reject">reject</option>
-                          <option value="approve">approve</option> */}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="modal-action">
-                      <div></div>
-                      <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button
-                          onClick={() => handlestatus(session._id)}
-                          className="btn btn-primary "
-                        >
-                          sent 
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </dialog>
-                {/* end modal */}
+                
 
               <NavLink to={`material/${session._id}`}>
               <FaCloudUploadAlt />

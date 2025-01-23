@@ -4,19 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ChekOut from "../Dashbord/student/ChekOut";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthProvider";
 import { toast } from "react-toastify";
+import useUserRole from "../Shared/useUserRole";
+import useAxiousSecure from "../Shared/useAxiousSecure";
+
 
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
 
 const SessionDetails = () => {
   const date = new Date();
   const { user } = useContext(AuthContext);
+  const axiousSecure=useAxiousSecure()
   const { id } = useParams();
   const axiousPublic = useAxiousPublic();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [role, roleLoading] = useUserRole(user);
+console.log('user',role)
   // Function to show the modal
   const showModal = () => setIsModalOpen(true);
   // Function to hide the modal
@@ -29,6 +34,15 @@ const SessionDetails = () => {
     }
   });
 //call review 
+const { data: booked = [], isLoading:bookedLoading, refetch:bookfetch } = useQuery({
+  queryKey: ['booked'],
+  queryFn: async () => {
+    const res = await axiousPublic.get(`/booked-datachek?email=${user?.email}&id=${id}`);
+    return res.data;
+  }
+});
+
+
 const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQuery({
     queryKey: ['review'],
     queryFn: async () => {
@@ -36,16 +50,24 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
       return res.data;
     }
   });
+  if (bookedLoading) {
+    return <div className="loading loading-ring loading-lg"></div>;
+  }
+
+  console.log('booked', booked)
+
   if (reviewLoading) {
     return <div className="loading loading-ring loading-lg"></div>;
   }
   //console.log('review',reviews)
 
-
   if (isLoading) {
     return <div className="loading loading-ring loading-lg"></div>;
   }
 
+
+
+const averageRating=reviews.reduce((sum,review)=>sum+review.studentRating,0)/reviews.length
 
   const registrationStartDate = new Date(session.registrationStartDate);
   const disablebtn = date > registrationStartDate;
@@ -65,6 +87,7 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
     };
     const { data } = await axiousPublic.post('/booked-data', bookdata);
     if (data.acknowledged) {
+      bookfetch()
       toast.success('Booked successfully');
     }
   };
@@ -77,10 +100,14 @@ const { data: reviews = [], isLoading:reviewLoading, refetch:revrefetch } = useQ
   const handleReview=async(e)=>{
     e.preventDefault()
     const review=e.target.review.value
-
+    const rating=parseInt(e.target.rating.value)
+if(rating>5){
+  return toast.warning('review ot of 5')
+}
     const reviewData={
         sessionId:session._id,
         studentReview:review,
+        studentRating:rating,
         studentMail:user?.email,
         studentImg:user?.photoURL,
         username:user.displayName
@@ -107,7 +134,7 @@ setIsModalOpen(false)
           <span className="ml-2 text-gray-600">{session.tutorName}</span>
         </div>
         <div>
-          <img src="https://i.ibb.co.com/XpLKwHk/download-3.jpg" alt="" />
+          <img src={session.thumbnelurl} alt="" />
         </div>
 
         {/* Average Rating */}
@@ -138,18 +165,18 @@ setIsModalOpen(false)
         <div className="flex items-center mb-4">
           <div className="mr-6">
             <h3 className="text-xl font-semibold text-gray-700">Class Start Time: </h3>
-            <p className="text-gray-600">{new Date(session.classStartTime).toLocaleTimeString()}</p>
+            <p className="text-gray-600">{new Date(session.classStartDate).toLocaleDateString()}</p>
           </div>
           <div>
             <h3 className="text-xl font-semibold text-gray-700">Class End Time: </h3>
-            <p className="text-gray-600">{new Date(session.classEndTime).toLocaleTimeString()}</p>
+            <p className="text-gray-600">{new Date(session.classEndDate).toLocaleDateString()}</p>
           </div>
         </div>
 
         {/* Session Duration */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-700">Session Duration: </h3>
-          <p className="text-gray-600">{session.duration} hours</p>
+          <h3 className="text-xl font-semibold text-gray-700">Session Duration:</h3>
+          <p className="text-gray-600">{session.sessionDuration}  hours</p>
         </div>
 
         {/* Registration Fee */}
@@ -159,11 +186,16 @@ setIsModalOpen(false)
             {session.registrationFee === 0 ? 'Free' : `$${session.registrationFee}`}
           </p>
         </div>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-700">Avagerage Rating :{averageRating ||'N/A'} </h2>
+        </div>
 
         {/* Reviews */}
-        <div className="mb-4 flex justify-center items-center gap-5">
+        <div className="mb-4 flex   justify-center items-center gap-5">
           <h3 className="text-xl font-semibold text-gray-700">Reviews:</h3>
-          <button onClick={ openmodal} className="btn btn-sm">Add Review</button>
+     {
+         booked.length>0&& <button  onClick={ openmodal} className={`btn btn-sm disabled`}>Add Review</button>
+     }
         </div>
     {    reviews.length>0? <div className="h-40 overflow-scroll">
          {
@@ -199,7 +231,7 @@ setIsModalOpen(false)
         </div>:<p className="text-2xl text-red-400 font-semibold">No Review Available </p>}
 
         {/* Book Now or Registration Closed */}
-        <div className="mt-6">
+{booked.length===0&& role==='student' &&    <div className="mt-6">
           {disablebtn ? (
             <button className="btn w-full bg-gray-500 text-white cursor-not-allowed" disabled>
               Registration Closed
@@ -208,7 +240,7 @@ setIsModalOpen(false)
             <div>
               {/* Payment */}
               <Elements stripe={stripePromise}>
-                <ChekOut session={session} />
+                <ChekOut bookfetch={bookfetch} session={session} />
               </Elements>
             </div>
           ) : (
@@ -218,7 +250,7 @@ setIsModalOpen(false)
               Book Free
             </button>
           )}
-        </div>
+        </div>}
       </div>
 
       {/* Modal for Review */}
@@ -236,6 +268,7 @@ setIsModalOpen(false)
             <div className="space-y-4">
               {/* Add Review Content Goes Here */}
               <form onSubmit={handleReview} className="card-body">
+                <input type="number"   name='rating'  placeholder="review out of 5" required  />
               <textarea name='review' className="w-full p-2 border rounded" placeholder="Write your review here..." />
               <button type="submit"  className="btn btn-primary w-full">Submit Review</button>
       </form>

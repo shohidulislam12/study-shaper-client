@@ -1,23 +1,45 @@
 import React, { useContext } from 'react';
 import { FaGithub } from 'react-icons/fa';
-import { AuthContext } from '../Authprovider/AuthProvider';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Authprovider/AuthProvider';
+import useAxiousPublic from '../Shared/useAxiousPublic';
+import { toast } from 'react-toastify';
 
 const Githublog = () => {
-    const {githubLogin}=useContext(AuthContext)
-    const location=useLocation()
+    const axiousPublic=useAxiousPublic()
+    const {  githubLogin}=useContext(AuthContext )
     const navigate=useNavigate()
+    const location=useLocation()
 const from=location?.state||'/'
-//console.log(location)
+
     const handleGithub=()=>{
-        githubLogin()
-        .then((user) => {
+       // console.log('google')
+       githubLogin()
+        .then((result) => {
+            console.log(result.user)
             navigate(from)
-          // console.log(user)
-          }).catch((error) => {
-           // console.log(error)
-          });
+           // console.log(result.user)
+            const userData = {
+                name: result.user.displayName, // Fixed: Use `displayName` for user's name
+                email: result.user.email, // Include email as a best practice
+                photoURL: result.user.photoURL,
+                role:'student', // Optional: User's profile picture
+            };
         
+      axiousPublic.post('/users',userData)
+      .then(res=>{
+        if(res){
+        console.log(res.data.insertedId)
+        }
+      })
+          
+            toast.success('login Sucess')
+       
+          }).catch((error) => {
+            toast.error(error)
+            
+          });
         
     }
     return (

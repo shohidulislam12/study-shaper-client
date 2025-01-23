@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Authprovider/AuthProvider';
 import { toast } from 'react-toastify';
 import useAxiousPublic from '../../Shared/useAxiousPublic';
+import { useNavigate } from 'react-router-dom';
 
 const CreatNote = () => {
   const { user } = useContext(AuthContext); // Get the logged-in user's info
 const axiousPublic=useAxiousPublic()
+const navigate=useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -20,6 +22,7 @@ const axiousPublic=useAxiousPublic()
   const {data}=await axiousPublic.post('/creatnote',noteData)
 
 if(data.acknowledged){
+  navigate('/dashbord/personalnotes')
   toast.success('note created  sucess')
 }
  

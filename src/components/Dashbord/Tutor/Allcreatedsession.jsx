@@ -6,16 +6,18 @@ import { FaCodePullRequest } from "react-icons/fa6";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import useAxiousSecure from "../../Shared/useAxiousSecure";
 
 const Allcreatedsession = () => {
   const { user } = useContext(AuthContext);
   const [status, setSelestatus] = useState("pending");
   const [amount, setAmount] = useState("");
   const axiousPublic = useAxiousPublic();
+  const axiousSecure=useAxiousSecure()
   const { data: sessions = [], isLoading,refetch } = useQuery({
     queryKey: ["session",user],
     queryFn: async () => {
-      const res = await axiousPublic.get(`/allsession/${user.email}`);
+      const res = await axiousSecure.get(`/allsession/${user.email}`);
       return res.data;
     },
   });
@@ -32,16 +34,16 @@ const Allcreatedsession = () => {
   
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+   
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Do It!",
     }).then((result) => {
       if (result.isConfirmed) {
     
-        axiousPublic
+        axiousSecure
           .patch(`/updatestatus/${id}`, {
             status: status,
           })
@@ -51,7 +53,7 @@ const Allcreatedsession = () => {
            // console.log(res.data);
           });
         Swal.fire({
-          title: "Deleted!",
+          title: "Seccess!",
           text: "Your file has been deleted.",
           icon: "success",
         });
@@ -80,7 +82,7 @@ const Allcreatedsession = () => {
               <td>{session.status}</td>
               <td className="flex gap-2 ">
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-                <button
+               {session.status==='reject'&& <button
                   className="btn"
                   onClick={() =>
                     document
@@ -89,24 +91,14 @@ const Allcreatedsession = () => {
                   }
                 >
                   <FaCodePullRequest />
-                </button>
+                </button>}
                 <dialog
                   id={`my_modal_${session._id}`}
                   className="modal modal-bottom sm:modal-middle"
                 >
                   <div className="modal-box">
                     <h3 className="font-bold text-lg">Sent Requist Again </h3>
-                    {/* <div className="mt-4">
-                      <label className="block text-sm mb-1">Amount:</label>
-                      <input
-                        type="number"
-                        className="input input-bordered w-full"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        placeholder="Enter amount"
-                        min="0"
-                      />
-                    </div> */}
+
                     <div className="flex justify-center flex-col items-center">
                       <div className="flex justify-center gap-5 items-center ">
                         {/* <span className="text-2xl ">Status : </span> */}
@@ -118,8 +110,7 @@ const Allcreatedsession = () => {
                           value={status}
                         >
                           <option value="pending" >resent requist for Aprove</option>
-                          {/* <option value="reject">reject</option>
-                          <option value="approve">approve</option> */}
+                     
                         </select>
                       </div>
                     </div>
@@ -127,7 +118,7 @@ const Allcreatedsession = () => {
                     <div className="modal-action">
                       <div></div>
                       <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
+                     
                         <button
                           onClick={() => handlestatus(session._id)}
                           className="btn btn-primary "
@@ -139,10 +130,28 @@ const Allcreatedsession = () => {
                   </div>
                 </dialog>
                 {/* end modal */}
-
-              <NavLink to={`material/${session._id}`}>
+             {session.status=='reject'&&   <div>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Show resason </button>
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg"> Reject Reason:{session?.rejectreson}</h3>
+    <p className="py-4">FeedBAck: <br />
+    {session?.feedback}</p>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+             </div>
+              }
+            {session.status=='approve'&&  <NavLink to={`material/${session._id}`}>
               <FaCloudUploadAlt />
-              </NavLink>
+              </NavLink>}
+             
               </td>
             </tr>
           ))}

@@ -16,9 +16,7 @@ const TutorCard = ({tutor}) => {
                 <h3 className="text-xl font-semibold text-indigo-600">{tutor.name}</h3>
                 <p className="text-gray-500 text-sm"> Email: {'   ' }{tutor.email}</p>
                
-                <div className="card-actions mt-4">
-                    <button className="btn btn-primary  w-full">Contact</button>
-                </div>
+             
             </div>
 
         </div>

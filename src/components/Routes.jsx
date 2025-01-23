@@ -24,6 +24,9 @@ import EditNote from "./Dashbord/student/EditNote.jsx";
 import UploeadMaterial from "./Dashbord/Tutor/UploeadMaterial.jsx";
 import EditMaterial from "./Dashbord/Tutor/EditMaterial.jsx";
 import Payment from "./Dashbord/student/Payment.jsx";
+import TutorPrivet from "./Dashbord/Tutor/TutorPrivet.jsx";
+import StudentPrivet from "./Dashbord/student/StudentPrivet.jsx";
+import AdminPrivet from "./Dashbord/Admin/AdminPrivet.jsx";
 
 
     const router = createBrowserRouter([
@@ -41,28 +44,28 @@ import Payment from "./Dashbord/student/Payment.jsx";
             },
             {
                 path:'/dashbord',
-                element:<DashBord></DashBord>,
+                element:<PrivetRoute><DashBord></DashBord></PrivetRoute>,
                 children:[
                   // student dashbord
                   {
                     path:'booked',
-                    element:<Booked></Booked>
+                    element:<StudentPrivet><Booked></Booked></StudentPrivet>
                 },
                   {
                     path:'createnote',
-                    element:<CreartNote></CreartNote>
+                    element:<StudentPrivet><CreartNote></CreartNote></StudentPrivet>
                 },
                   {
                     path:'personalnotes/note/:id',
-                    element:<EditNote></EditNote>
+                    element:<StudentPrivet><EditNote></EditNote></StudentPrivet>
                 },
                   {
                     path:'personalnotes',
-                    element:<ManegeNote></ManegeNote>
+                    element:<StudentPrivet><ManegeNote></ManegeNote></StudentPrivet>
                 },
                   {
                     path:'studymaterials',
-                    element:<StudyMateril></StudyMateril>
+                    element:<StudentPrivet><StudyMateril></StudyMateril></StudentPrivet>
                 },
                 // tutor dashbord
                   {
@@ -71,40 +74,40 @@ import Payment from "./Dashbord/student/Payment.jsx";
                 },
                   {
                     path:'creatsession',
-                    element:<Creatsession></Creatsession>
+                    element:<TutorPrivet><Creatsession></Creatsession></TutorPrivet>
                 },
                  {
                     path:'createdsession/material/:id',
-                    element:<PrivetRoute><UploeadMaterial></UploeadMaterial></PrivetRoute>
+                    element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
                 },
                 {
                   path:'uploadmaterials/material/:id',
-                  element:<PrivetRoute><UploeadMaterial></UploeadMaterial></PrivetRoute>
+                  element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
               },
                 {
                   path:'materials/material/:id',
-                  element:<PrivetRoute><EditMaterial></EditMaterial></PrivetRoute>
+                  element:<TutorPrivet><EditMaterial></EditMaterial></TutorPrivet>
               },
                   {
                     path:'uploadmaterials',
-                    element:<PrivetRoute><Uploadmaterials></Uploadmaterials></PrivetRoute>
+                    element:<TutorPrivet><Uploadmaterials></Uploadmaterials></TutorPrivet>
                 },
                   {
                     path:'createdsession',
-                    element:<Allcreatedsession></Allcreatedsession>
+                    element:<TutorPrivet><Allcreatedsession></Allcreatedsession></TutorPrivet>
                 },
                 // admin dashbord
                   {
                     path:'allmaterials',
-                    element:<Allmaterialsadmin></Allmaterialsadmin>
+                    element:<AdminPrivet><Allmaterialsadmin></Allmaterialsadmin></AdminPrivet>
                 },
                   {
                     path:'allstudysession',
-                    element:<Allstudysession></Allstudysession>
+                    element:<AdminPrivet><Allstudysession></Allstudysession></AdminPrivet>
                 },
                   {
                     path:'allusers',
-                    element:<Allusers></Allusers>
+                    element:<AdminPrivet><Allusers></Allusers></AdminPrivet>
                 },
                   
                 ]

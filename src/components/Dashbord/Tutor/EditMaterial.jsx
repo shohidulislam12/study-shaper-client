@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import useAxiousPublic from '../../Shared/useAxiousPublic';
 import { AuthContext } from '../../Authprovider/AuthProvider';
 import { photoURL } from '../../Shared/Sheared';
+import useAxiousSecure from '../../Shared/useAxiousSecure';
 
 const EditMaterial = () => {
     const {id}=useParams()
@@ -14,6 +15,7 @@ const EditMaterial = () => {
     const axiousPublic=useAxiousPublic()
     const [image,setImage]=useState(null)
     const {user}=useContext(AuthContext)
+    const axiousSecure=useAxiousSecure()
      const [session,setsession]=useState([])
      useEffect(()=>{
         axiousPublic.get(`/editmaterial/${id}`)
@@ -38,7 +40,7 @@ const EditMaterial = () => {
          }
         // console.log(noteData)
         
-       const {data}=await axiousPublic.put(`/materialUpdate/${id}`,noteData)
+       const {data}=await axiousSecure.put(`/materialUpdate/${id}`,noteData)
     // console.log(data)
      if(data.acknowledged){
       navigate(-1)

@@ -9,16 +9,18 @@ import Swal from "sweetalert2";
 import useAxiousPublic from "../../Shared/useAxiousPublic";
 import { AuthContext } from "../../Authprovider/AuthProvider";
 import useAdmin from "../../Shared/useAdmin";
+import useAxiousSecure from "../../Shared/useAxiousSecure";
 
 
 const Allmaterialsadmin = () => {
     const {user}=useContext(AuthContext)
     const [isadmin]=useAdmin()
+        const axiousSecure=useAxiousSecure()
     const axiousPublic = useAxiousPublic();
     const { data: materials = [], isLoading,refetch } = useQuery({
       queryKey: ["materials",user],
       queryFn: async () => {
-        const res = await axiousPublic.get(`/allmaterialadmin`);
+        const res = await axiousSecure.get(`/allmaterialadmin`);
         return res.data;
       },
     });
@@ -35,17 +37,17 @@ const Allmaterialsadmin = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Delete it!"
           }).then(async(result) => {
             if (result.isConfirmed) {
              
-                const{data}=await axiousPublic.delete(`/deletematerial/${id}`)
+                const{data}=await axiousSecure.delete(`/deletematerial/${id}`)
              
                 if(data.acknowledged){
                     refetch()
                  Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
+                title: "Updateded!",
+                text: "Material Delete Done",
                 icon: "success"
               });
                 }

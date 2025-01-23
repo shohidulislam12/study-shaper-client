@@ -5,15 +5,17 @@ import { useQuery } from '@tanstack/react-query';
 import { all } from 'axios';
 import StudentNoteCard from './StudentNoteCard';
 import Swal from 'sweetalert2';
+import useAxiousSecure from '../../Shared/useAxiousSecure';
 
 
 const ManegeNote = () => {
     const {user}=useContext(AuthContext)
     const axiousPublic=useAxiousPublic()
+    const axiousSecure=useAxiousSecure()
     const {data:allnotes=[],isLoading,refetch} = useQuery({
         queryKey: ['allnotes',user],
          queryFn: async()=>{
-           const res= await axiousPublic.get(`/getnote/${user.email}`)
+           const res= await axiousSecure.get(`/getnote/${user.email}`)
            return res.data
          }
                   
@@ -50,11 +52,13 @@ const handledelete=(id)=>{
       });
 }
     return (
+       <>{ allnotes.length>0?
         <div>
            {allnotes.map((note,i)=>
             <StudentNoteCard handledelete={handledelete} note={note} key={note._id}></StudentNoteCard>
            )}
-        </div>
+        </div>:<p className='text-3xl '>
+          No note Available </p>}</>
     );
 };
 

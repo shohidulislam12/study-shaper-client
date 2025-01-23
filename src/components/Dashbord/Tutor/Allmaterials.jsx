@@ -6,11 +6,13 @@ import { FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiousSecure from "../../Shared/useAxiousSecure";
 
 
 const Allmaterials = () => {
     const {user}=useContext(AuthContext)
     const axiousPublic = useAxiousPublic();
+    const axiousSecure=useAxiousSecure()
     const { data: materials = [], isLoading,refetch } = useQuery({
       queryKey: ["materials",user],
       queryFn: async () => {
@@ -35,7 +37,7 @@ const Allmaterials = () => {
           }).then(async(result) => {
             if (result.isConfirmed) {
             //    console.log(id)
-                const{data}=await axiousPublic.delete(`/deletematerial/${id}`)
+                const{data}=await axiousSecure.delete(`/deletematerial/${id}`)
              //   console.log(data)
                 if(data.acknowledged){
                     refetch()
@@ -63,10 +65,10 @@ const Allmaterials = () => {
                 <span className="font-semibold">Session ID:</span> {material.sessionId}
               </p>
             </div>
-         <div className="flex overflow-scroll">
+         <div className="flex h-36 overflow-scroll">
          {material.photolinkarray
 .map((link, i) => (
-                    <img src={link} alt="" />
+                    <img className="" src={link} alt="" />
                   ))}
          </div>
       

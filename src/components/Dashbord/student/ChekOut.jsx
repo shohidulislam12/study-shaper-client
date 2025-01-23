@@ -3,12 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import useAxiousPublic from '../../Shared/useAxiousPublic';
 import { AuthContext } from '../../Authprovider/AuthProvider';
 import { toast } from 'react-toastify';
+import useAxiousSecure from '../../Shared/useAxiousSecure';
 
-const ChekOut = ({session}) => {
+const ChekOut = ({session,bookfetch}) => {
   const {user}=useContext(AuthContext)
     const stripe = useStripe();
     const elements = useElements();
     const axiousPublic=useAxiousPublic()
+    const axiousSecure=useAxiousSecure()
     const [secret,setsecret]=useState('')
   useEffect(()=>{
     getpaymentintent()
@@ -29,14 +31,9 @@ const ChekOut = ({session}) => {
       event.preventDefault();
   
       if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
+       
         return;
       }
-  
-      // Get a reference to a mounted CardElement. Elements knows how
-      // to find your CardElement because there can only ever be one of
-      // each type of element.
       const card = elements.getElement(CardElement);
   
       if (card == null) {
@@ -83,6 +80,7 @@ const ChekOut = ({session}) => {
     const {data} =await axiousPublic.post('/booked-data',bookdata)
     if(data.acknowledged){
     //  console.log(data)
+    bookfetch()
         toast.success('payment sucess and booked ')
     }
       }

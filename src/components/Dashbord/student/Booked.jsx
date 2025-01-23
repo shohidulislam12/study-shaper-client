@@ -12,7 +12,7 @@ const {user}=useContext(AuthContext)
     const axiousPublic=useAxiousPublic()
     const axiousSecure=useAxiousSecure()
     const {data:booked=[],isLoading,refetch} = useQuery({
-        queryKey: ['booked'],
+        queryKey: ['booked',user?.email],
          queryFn: async()=>{
            const res= await axiousSecure.get(`/bookingdata/${user.email}`)
            return res.data
@@ -22,6 +22,7 @@ const {user}=useContext(AuthContext)
         if (isLoading) {
          return <div className="loading loading-ring loading-lg"></div>;
        }
+       console.log('book',booked)
 //console.log(booked)
 
     return (
@@ -43,7 +44,7 @@ const {user}=useContext(AuthContext)
           </thead>
           <tbody>
             {/* row 1 */}
-          {
+          { booked.length>0&&
             booked.map((book,i)=>
               <tr key={book._id} >
             <th>
@@ -69,14 +70,16 @@ const {user}=useContext(AuthContext)
               <br />
               <span className="badge badge-ghost badge-sm">{book.transitionId==='N/A'?'free':`${book.transitionId}`}</span>
             </td>
-            <td>Purple</td>
+            <td>Action</td>
             <th>
               <NavLink to={`/sessiondetails/${book.sessionId
 }`} className="btn btn-primary">details</NavLink>
             </th>
           </tr>)
           }
-         
+         {
+          !booked.length&& <p>No Booked Session Found</p>
+         }
 
           </tbody>
       

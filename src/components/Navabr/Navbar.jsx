@@ -8,7 +8,7 @@ const Navbar = () => {
 
     const list=<>
         <li><NavLink to='/'>Home</NavLink> </li>
-    <li><NavLink to='/dashbord'>DashBord</NavLink> </li>
+   { user?.email&&<li><NavLink to='/dashbord'>DashBord</NavLink> </li>}
     </>
     const signout=()=>{
       handlesignOut()
@@ -55,9 +55,13 @@ const Navbar = () => {
             </span>
       
               <li><NavLink to='/'>Settings</NavLink></li>
-              <li><button onClick={signout}>Logout</button></li>
-              <li><NavLink to='/signin'>SignIn</NavLink></li>
-              <li><NavLink to='/signup'>SignUp</NavLink></li>
+             {user?.email&& <li><button onClick={signout}>Logout</button></li>}
+             {
+              !user?.email&& <span>
+                <li><NavLink to='/signin'>SignIn</NavLink></li>
+                <li><NavLink to='/signup'>SignUp</NavLink></li>
+              </span>
+             }
             </ul>
          
 
