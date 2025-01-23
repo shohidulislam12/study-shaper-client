@@ -37,7 +37,7 @@ const {user}=useContext(AuthContext)
                 </label>
               </th>
               <th>Tutor</th>
-              <th>Session Inf</th>
+              <th>TransactionId</th>
               <th>Favorite Color</th>
               <th>Action</th>
             </tr>
@@ -61,13 +61,16 @@ const {user}=useContext(AuthContext)
                 </div>
                 <div>
                   <div className="font-bold">{book.tutorName}</div>
+                  <div>{book.sessionTitle}</div>
                   <div className="text-sm opacity-50">{book.TutorEmail }</div>
+                  
+            
+              
                 </div>
               </div>
             </td>
             <td>
-              {book.sessionTitle}
-              <br />
+              
               <span className="badge badge-ghost badge-sm">{book.transitionId==='N/A'?'free':`${book.transitionId}`}</span>
             </td>
             <td>Action</td>
