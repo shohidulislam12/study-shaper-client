@@ -16,13 +16,13 @@ const Banner = () => {
           "id": 1,
           "bannerText": "Shape Your Learning Journey with StudyShaper",
           "subText": "Empowering students with tailored resources and tools for effective studying.",
-          "bgImageUrl": "https://i.ibb.co.com/txkrdfZ/top-view-of-modern-workplace-laptop-coffee-paper-note-pencil-on-the-white-background-and-copy-space.jpg"
+          "bgImageUrl": "https://i.ibb.co.com/XxfYzfzh/iewek-gnos-hh-Ux08-Pu-Ypc-unsplash.jpg"
         },
         {
           "id": 2,
           "bannerText": "Unlock Your Potential with StudyShaper",
           "subText": "Your path to smarter learning begins here.",
-          "bgImageUrl": "https://i.ibb.co.com/fN8jNHw/education-and-learning-banner-flat-design-template-school-object-on-JEK4-TW.jpg"
+          "bgImageUrl": "https://i.ibb.co.com/pBN4H05v/thought-catalog-505eect-W54k-unsplash.jpg"
         },
         {
           "id": 3,
@@ -34,18 +34,18 @@ const Banner = () => {
           "id": 4,
           "bannerText": "Transforming Education with StudyShaper",
           "subText": "Experience the future of learning with innovative tools and techniques.",
-          "bgImageUrl": "https://i.ibb.co.com/JtRwSTh/images-2.jpg"
+          "bgImageUrl": "https://i.ibb.co.com/zh0NSv6t/wes-hicks-4-Ee-Tna-C1-S4-unsplash.jpg"
         },
         {
           "id": 5,
           "bannerText": "Achieve Academic Excellence with StudyShaper",
           "subText": "Your companion in every step of your educational journey.",
-          "bgImageUrl": "https://i.ibb.co.com/Z6knsH8/images-1.jpgg"
+          "bgImageUrl": "https://i.ibb.co.com/7J16s5P6/annie-spratt-d-WYU3i-mq-Eo-unsplash.jpg"
         }
       ]
       
     return (
-        <div className='my-16'>
+        <div className='mt-16  bg-[#fbf6f6]'>
              <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
        {
         banners.map(banner=>

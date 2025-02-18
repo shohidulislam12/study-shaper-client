@@ -137,16 +137,11 @@ setIsModalOpen(false)
           <img src={session.thumbnelurl} alt="" />
         </div>
 
-        {/* Average Rating */}
-        <div className="flex items-center mb-4">
-          <h3 className="text-xl font-semibold text-gray-700">Average Rating: </h3>
-          <span className="ml-2 text-yellow-500">{session.averageRating}</span>
-        </div>
 
         {/* Session Description */}
         <div className="mb-4">
           <h3 className="text-xl font-semibold text-gray-700">Session Description: </h3>
-          <p className="text-gray-600">{session.description}</p>
+          <p className="text-gray-600">{session.sessionDescription}</p>
         </div>
 
         {/* Registration Dates */}

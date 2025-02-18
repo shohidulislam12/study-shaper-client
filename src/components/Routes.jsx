@@ -30,6 +30,7 @@ import AdminPrivet from "./Dashbord/Admin/AdminPrivet.jsx";
 import ErrorElement from "./ErrorElement.jsx";
 import BlogPage from "./blogpage/BlogPage.jsx";
 import AboutUs from "./aboutus/AboutUs.jsx";
+import Community from "./commonity/Community.jsx";
 
 
     const router = createBrowserRouter([
@@ -49,6 +50,10 @@ import AboutUs from "./aboutus/AboutUs.jsx";
             {
                 path:'/about',
                 element:<AboutUs></AboutUs>
+            },
+            {
+                path:'/community',
+                element:<Community></Community>
             },
             {
                 path:'/payment',

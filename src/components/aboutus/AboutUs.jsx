@@ -72,7 +72,7 @@ const AboutUs = () => {
   { name: "Mark Wilson", role: "Community Manager", img: "https://i.ibb.co/TqY7zSDz/irene-strong-v2a-Knj-Mb-P-k-unsplash.jpg" },
   { name: "Emily Carter", role: "Head of Content", img: "https://i.ibb.co.com/5hbJywRC/charlie-green-3-Jmf-ENc-L24-M-unsplash.jpg" },
   { name: "Daniel Lee", role: "Full Stack Developer", img: "https://i.pravatar.cc/150?img=5" },
-  { name: "Sophia White", role: "Marketing Specialist", img: "https://i.pravatar.cc/150?img=6" },
+  { name: "Sophia White", role: "Marketing Specialist", img: "https://i.ibb.co.com/ZztpCWQ8/download-17.jpg" },
   { name: "Liam Johnson", role: "UX/UI Designer", img: "https://i.pravatar.cc/150?img=7" },
   { name: "Olivia Martinez", role: "Customer Support", img: "https://i.pravatar.cc/150?img=8" },
   { name: "Asif Adnan", role: "office maneger", img: "https://i.ibb.co.com/hx7SJQL6/download-18.jpg" }
