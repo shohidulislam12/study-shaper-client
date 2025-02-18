@@ -8,6 +8,7 @@ const Navbar = () => {
 
     const list=<>
         <li><NavLink to='/'>Home</NavLink> </li>
+        <li><NavLink to='/blogs'>Blog</NavLink> </li>
    { user?.email&&<li><NavLink to='/dashbord'>DashBord</NavLink> </li>}
     </>
     const signout=()=>{

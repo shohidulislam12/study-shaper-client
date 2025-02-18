@@ -1,13 +1,14 @@
 const Footer = () => {
   return (
-      <footer className="footer footer-center p-10 bg-[#262626] text-white">
-      <div>
+     <div className='bg-[#262626] text-center pb-5 text-white'>
+      <footer className="footer  items-center  p-5 bg-[#262626] text-white">
+      <div className="flex flex-col items-center">
         <img src="/reading.png" alt="Logo" className="w-12 h-12 mb-2" />
         <p className="font-bold">
           Study<span className="text-blue-500">Sphere</span> <br />
           Your Collaborative Learning Platform
         </p>
-        <p>© {new Date().getFullYear()} StudySphere. All rights reserved.</p>
+        
       </div>
       <div className="grid grid-flow-col gap-4 mt-4">
         <a href="#" className="hover:text-[#82B440]">
@@ -20,7 +21,7 @@ const Footer = () => {
           Privacy Policy
         </a>
       </div>
-      <div className="grid grid-flow-col gap-4 mt-4">
+      <div className="grid grid-flow-col gap-4 ">
         <a href="https://x.com/MDSIFAT1621900" target="_blank" rel="noopener noreferrer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +53,12 @@ const Footer = () => {
             <path d="M12 5.838c-3.408 0-6.162 2.754-6.162 6.162S8.592 18.162 12 18.162 18.162 15.408 18.162 12 15.408 5.838 12 5.838zm0 10.327c-2.295 0-4.165-1.87-4.165-4.165S9.705 7.835 12 7.835s4.165 1.87 4.165 4.165-1.87 4.165-4.165 4.165zm6.406-11.845a1.44 1.44 0 11-2.881 0 1.44 1.44 0 012.881 0z" />
           </svg>
         </a>
+        
       </div>
+  
     </footer>
+        <p>© {new Date().getFullYear()} StudySphere. All rights reserved.</p>
+        </div>
   );
 };
 
