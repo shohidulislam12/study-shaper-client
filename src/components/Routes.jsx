@@ -29,6 +29,7 @@ import StudentPrivet from "./Dashbord/student/StudentPrivet.jsx";
 import AdminPrivet from "./Dashbord/Admin/AdminPrivet.jsx";
 import ErrorElement from "./ErrorElement.jsx";
 import BlogPage from "./blogpage/BlogPage.jsx";
+import AboutUs from "./aboutus/AboutUs.jsx";
 
 
     const router = createBrowserRouter([
@@ -44,6 +45,10 @@ import BlogPage from "./blogpage/BlogPage.jsx";
             {
                 path:'/blogs',
                 element:<BlogPage></BlogPage>
+            },
+            {
+                path:'/about',
+                element:<AboutUs></AboutUs>
             },
             {
                 path:'/payment',
