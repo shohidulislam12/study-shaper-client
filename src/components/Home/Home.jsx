@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import Faq from "./Faq";
 import Feature from "./Feature";
 import HowWork from "./HowWork";
 import NewsComponent from "./NewsComponent";
@@ -15,6 +16,7 @@ const Home = () => {
             <NewsComponent></NewsComponent>
             <Feature></Feature>
             <HowWork></HowWork>
+            <Faq></Faq>
        
           
             

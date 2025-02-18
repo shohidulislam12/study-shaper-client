@@ -31,7 +31,7 @@ const pages=[...Array(numberOfpage).keys()]
 
 
     return (
-        <div className="py-7  bg-[#fbf6f6] ">
+        <div className="py-7 p-4  bg-[#fbf6f6] ">
      
             <h2 className="text-3xl text-indigo-600 font-bold text-center  mb-8">
                 Available Session
