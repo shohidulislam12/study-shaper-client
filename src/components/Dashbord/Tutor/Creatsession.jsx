@@ -80,7 +80,7 @@ const Creatsession = () => {
     //save data in database
     const { data } = await axiousSecure.post("/allsession", formData);
     if (data.insertedId) {
-      navigate("/dashbord/createdsession");
+    navigate("/dashbord/createdsession");
       toast.success("Session Creat Sucess");
     } else toast.error("Sorr,there is an irror");
     // console.log(data)

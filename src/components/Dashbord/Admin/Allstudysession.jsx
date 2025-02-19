@@ -114,12 +114,12 @@ useEffect(()=>{
   }
 
   return (
- <div className="bg-black min-h-screen ">
+ <div className="dark:bg-black min-h-screen ">
      <div className="overflow-x-auto dark:bg-gray-300 dark:text-black">
       <table className="table table-zebra">
         {/* Table Head */}
         <thead>
-          <tr>
+          <tr className="dark:text-black">
             <th></th>
             <th>Session Title</th>
             <th>Registration Fee</th>

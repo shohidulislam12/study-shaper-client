@@ -4,6 +4,7 @@ import { AuthContext } from '../Authprovider/AuthProvider';
 import { toast } from 'react-toastify';
 import GoogleLog from './GoogleLog';
 import Githublog from './Githublog';
+import DefaultUserCred from '../Shared/DefaultUserCred';
 
 const SignIn = () => {
     const {signInWithMailPass}=useContext(AuthContext)
@@ -101,6 +102,7 @@ const from=location?.state||'/'
                         <div className="flex flex-col gap-2">
                             <GoogleLog />
                             <Githublog />
+                            <DefaultUserCred></DefaultUserCred>
                         </div>
                     </p>
                 </div>

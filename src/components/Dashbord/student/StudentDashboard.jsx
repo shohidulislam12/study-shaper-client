@@ -43,8 +43,8 @@ console.log("studentverview",stats)
             </div>
 
             {/* Charts */}
-            <div className="mt-10 bg-gray-100  dark:bg-gray-400 dark:text-white p-6 rounded-lg">
-                <h3 className="text-xl font-semibold text-center dark:text-white mb-4">Books vs Notes</h3>
+            <div className="mt-10 bg-gray-100  dark:bg-gray-600 dark:text-white p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-center dark:text-white mb-4">Booked vs Notes</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie data={pieData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value">

@@ -67,7 +67,7 @@ const StudyMateril = () => {
         <div className="card-body p-4">
           <div className="mb-3">
             <h4 className="text-sm font-semibold mb-1">Resource Links:</h4>
-           {material?.materials[0]?.linkarray.length>0?
+           {material?.materials[0]?.linkarray?.length>0?
              <div className="flex flex-col gap-1">
              {material?.materials[0]?.linkarray.map((link, i) => (
                <a

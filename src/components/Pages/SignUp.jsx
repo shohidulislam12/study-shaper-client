@@ -5,6 +5,7 @@ import { AuthContext } from '../Authprovider/AuthProvider';
 import GoogleLog from './GoogleLog';
 import Githublog from './Githublog';
 import useAxiousPublic from '../Shared/useAxiousPublic';
+import DefaultUserCred from '../Shared/DefaultUserCred';
 
 const SignUp = () => {
     const {creatuserUsingMailPass,updateProfice}=useContext(AuthContext)
@@ -66,12 +67,13 @@ const from=location?.state||'/'
         <div className="flex items-center my-16 justify-center min-h-screen bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 p-4">
         <div className="flex flex-col lg:flex-row items-center bg-white shadow-xl rounded-lg overflow-hidden w-full max-w-6xl">
             {/* Left Section - Image */}
-            <div className="w-full lg:w-1/2 p-6 flex justify-center">
+            <div className="w-full justify-between flex-col lg:w-1/2 p-6 flex ">
                 <img
                     className="w-full max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow-lg"
                     src="https://i.ibb.co/GCLNg9D/360-F-255226859-Rhqr5hflr2es-VXHQE1s-S1b-Wxm-Zxs0g-WI.jpg"
                     alt="Sign-Up"
                 />
+              
             </div>
 
             {/* Right Section - SignUp Form */}
@@ -167,6 +169,7 @@ const from=location?.state||'/'
                         <div className="flex flex-col justify-center gap-4 mt-2">
                             <GoogleLog />
                             <Githublog />
+                            <DefaultUserCred></DefaultUserCred>
                         </div>
                     </div>
                 </form>

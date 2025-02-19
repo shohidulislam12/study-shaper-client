@@ -124,14 +124,14 @@ setIsModalOpen(false)
   }
 
   return (
-    <div className="container my-16 mx-auto p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-indigo-600 mb-4">{session.sessionTitle}</h1>
+    <div className="container  dark:bg-black   dark:text-white py-20 mx-auto p-6">
+      <div className="max-w-4xl dark:bg-gray-500 dark:text-white mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold dark:text-white  text-indigo-600 mb-4">{session.sessionTitle}</h1>
 
         {/* Tutor Details */}
         <div className="flex items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-700">Tutor: </h2>
-          <span className="ml-2 text-gray-600">{session.tutorName}</span>
+          <h2 className="text-xl font-semibold dark:text-white text-gray-700">Tutor: </h2>
+          <span className="ml-2 dark:text-white text-gray-600">{session.tutorName}</span>
         </div>
         <div>
           <img src={session.thumbnelurl} alt="" />
@@ -140,54 +140,54 @@ setIsModalOpen(false)
 
         {/* Session Description */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-700">Session Description: </h3>
-          <p className="text-gray-600">{session.sessionDescription}</p>
+          <h3 className="text-xl  dark:text-white font-semibold text-gray-700">Session Description: </h3>
+          <p className="dark:text-white text-gray-600">{session.sessionDescription}</p>
         </div>
 
         {/* Registration Dates */}
         <div className="flex items-center mb-4">
           <div className="mr-6">
-            <h3 className="text-xl font-semibold text-gray-700">Registration Start Date: </h3>
-            <p className="text-gray-600">{new Date(session.registrationStartDate).toLocaleDateString()}</p>
+            <h3 className="text-xl font-semibold dark:text-white  text-gray-700">Registration Start Date: </h3>
+            <p className=  " dark:text-white text-gray-600">{new Date(session.registrationStartDate).toLocaleDateString()}</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-700">Registration End Date: </h3>
-            <p className="text-gray-600">{new Date(session.registrationEndDate).toLocaleDateString()}</p>
+            <h3 className="text-xl font-semibold dark:text-white  text-gray-700">Registration End Date: </h3>
+            <p className=" dark:text-white text-gray-600">{new Date(session.registrationEndDate).toLocaleDateString()}</p>
           </div>
         </div>
 
         {/* Class Timing */}
         <div className="flex items-center mb-4">
           <div className="mr-6">
-            <h3 className="text-xl font-semibold text-gray-700">Class Start Time: </h3>
-            <p className="text-gray-600">{new Date(session.classStartDate).toLocaleDateString()}</p>
+            <h3 className="text-xl font-semibold dark:text-white text-gray-700">Class Start Time: </h3>
+            <p className="text-gray-600 dark:text-white">{new Date(session.classStartDate).toLocaleDateString()}</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-700">Class End Time: </h3>
-            <p className="text-gray-600">{new Date(session.classEndDate).toLocaleDateString()}</p>
+            <h3 className="text-xl dark:text-white  font-semibold text-gray-700">Class End Time: </h3>
+            <p className="dark:text-white text-gray-600">{new Date(session.classEndDate).toLocaleDateString()}</p>
           </div>
         </div>
 
         {/* Session Duration */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-700">Session Duration:</h3>
-          <p className="text-gray-600">{session.sessionDuration}  hours</p>
+          <h3 className="text-xl  dark:text-white font-semibold text-gray-700">Session Duration:</h3>
+          <p className="dark:text-white text-gray-600">{session.sessionDuration}  hours</p>
         </div>
 
         {/* Registration Fee */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-700">Registration Fee: </h3>
-          <p className="text-gray-600">
+          <h3 className="text-xl dark:text-white  font-semibold text-gray-700">Registration Fee: </h3>
+          <p className="dark:text-white text-gray-600">
             {session.registrationFee === 0 ? 'Free' : `$${session.registrationFee}`}
           </p>
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-700">Avagerage Rating :{averageRating ||'N/A'} </h2>
+          <h2 className="text-xl  dark:text-white font-semibold text-gray-700">Avagerage Rating :{averageRating ||'N/A'} </h2>
         </div>
 
         {/* Reviews */}
         <div className="mb-4 flex   justify-center items-center gap-5">
-          <h3 className="text-xl font-semibold text-gray-700">Reviews:</h3>
+          <h3 className="text-xl dark:text-white font-semibold text-gray-700">Reviews:</h3>
      {
          booked.length>0&& <button  onClick={ openmodal} className={`btn btn-sm disabled`}>Add Review</button>
      }
@@ -223,7 +223,7 @@ setIsModalOpen(false)
 
 
 
-        </div>:<p className="text-2xl text-red-400 font-semibold">No Review Available </p>}
+        </div>:<p className="text-2xl text-red-400 dark:text-white  font-semibold">No Review Available </p>}
 
         {/* Book Now or Registration Closed */}
 {booked.length===0&& role==='student' &&    <div className="mt-6">
@@ -250,11 +250,11 @@ setIsModalOpen(false)
 
       {/* Modal for Review */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800  bg-opacity-50 z-50">
+          <div className="bg-white dark:text-white dark:bg-gray-500   p-6 rounded-lg shadow-lg max-w-lg w-full">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold">Add Review</h2>
-              <button onClick={closeModal} className="text-gray-500 hover:text-gray-700">
+              <h2 className="text-2xl font-bold dark:text-white ">Add Review</h2>
+              <button onClick={closeModal} className=" dark:text-white text-gray-500 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -269,7 +269,7 @@ setIsModalOpen(false)
       </form>
             </div>
             <div className="mt-6 flex justify-end">
-              <button onClick={closeModal} className="btn btn-warning">Close</button>
+              <button onClick={closeModal} className="btn btn-outline">Close</button>
             </div>
           </div>
         </div>

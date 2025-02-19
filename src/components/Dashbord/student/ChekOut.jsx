@@ -109,8 +109,8 @@ const ChekOut = ({session,bookfetch}) => {
           },
         }}
       />
-      <button className='btn w-full bg-indigo-600 text-white hover:bg-indigo-700' type="submit" disabled={!stripe}>
-      Pay <span className='text-yellow-400'>{session.registrationFee}$</span> && Book Now 
+      <button className='btn w-full dark:text-white  bg-indigo-600 text-white hover:bg-indigo-700' type="submit" disabled={!stripe}>
+      Pay <span className='text-yellow-400 dark:text-white '>{session.registrationFee}$</span> && Book Now 
       </button>
 
     </form>
