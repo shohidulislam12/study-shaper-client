@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
         })
 
       } else {
-        toast.success("user loged out");
+      
         setUser(null);
         //remove token
         localStorage.removeItem('token')

@@ -53,11 +53,11 @@ const handledelete=(id)=>{
 }
     return (
        <>{ allnotes.length>0?
-        <div>
+        <div className=' dark:bg-black md:p-4 p-2 min-h-screen dark:text-white'>
            {allnotes.map((note,i)=>
             <StudentNoteCard handledelete={handledelete} note={note} key={note._id}></StudentNoteCard>
            )}
-        </div>:<p className='text-3xl '>
+        </div>:<p className='text-3xl dark:text-white '>
           No note Available </p>}</>
     );
 };

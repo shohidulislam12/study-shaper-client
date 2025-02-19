@@ -27,7 +27,9 @@ const TutorDashBord= () => {
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
     return (
-        <div className="max-w-6xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="dark:bg-black min-h-screen ">
+
+<div className="max-w-6xl mx-auto my-0 p-6 dark:bg-black dark:text-white  bg-white shadow-lg rounded-lg">
             <h2 className="text-3xl font-bold text-indigo-700 text-center mb-6"> Tutor Dashboard</h2>
             
             {/* Stats Cards */}
@@ -47,7 +49,7 @@ const TutorDashBord= () => {
             </div>
 
             {/* Charts */}
-            <div className="mt-10 bg-gray-100 p-6 rounded-lg">
+            <div className="mt-10 dark:bg-gray-500  dark:text-white  bg-gray-100 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-center mb-4">Sessions, Notes & Bookings</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
@@ -60,7 +62,8 @@ const TutorDashBord= () => {
                     </PieChart>
                 </ResponsiveContainer>
             </div>
-        </div>
+        </div> 
+    </div>
     );
 };
 

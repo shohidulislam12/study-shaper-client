@@ -114,7 +114,8 @@ useEffect(()=>{
   }
 
   return (
-    <div className="overflow-x-auto">
+ <div className="bg-black min-h-screen ">
+     <div className="overflow-x-auto dark:bg-gray-300 dark:text-black">
       <table className="table table-zebra">
         {/* Table Head */}
         <thead>
@@ -257,6 +258,7 @@ useEffect(()=>{
         </tbody>
       </table>
     </div>
+ </div>
   );
 };
 

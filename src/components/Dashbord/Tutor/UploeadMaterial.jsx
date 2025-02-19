@@ -48,7 +48,8 @@ session.sessionTitle
     
   //  console.log(session)
     return (
-        <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
+     <div className='min-h-screen py-10 dark:bg-black   dark:text-white'>
+   <div className="max-w-xl mx-auto p-6 dark:bg-gray-500 dark:text-white bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Upload Study Material</h2>
         <form onSubmit={handleSubmit}>
           {/* Title */}
@@ -64,14 +65,14 @@ session.sessionTitle
               value={session.sessionTitle}
               readOnly
               placeholder="Enter title"
-              className="input input-bordered w-full"
+              className="input dark:text-black input-bordered w-full"
             />
           </div>
   
           {/* Study Session ID */}
           <div className="mb-4">
             <label
-              className="block text-sm font-medium mb-1"
+              className="block  text-sm font-medium mb-1"
               htmlFor="studySessionId"
             >
               Study Session ID
@@ -82,7 +83,7 @@ session.sessionTitle
               name="studySessionId"
               value={session._id}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input dark:text-black input-bordered w-full bg-gray-100"
             />
           </div>
   
@@ -97,7 +98,7 @@ session.sessionTitle
               name="tutorEmail"
               value={user.email}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input dark:text-black input-bordered w-full bg-gray-100"
             />
           </div>
 
@@ -113,7 +114,7 @@ session.sessionTitle
               name="image"
               required
               placeholder="Enter Google Drive link by comma "
-              className="input input-bordered w-full"
+              className="input dark:text-black input-bordered w-full"
             />
           </div>
           {/* Link */}
@@ -127,7 +128,7 @@ session.sessionTitle
               name="link"
               required
               placeholder="Enter Google Drive link by comma "
-              className="input input-bordered w-full"
+              className="input dark:text-black input-bordered w-full"
             />
           </div>
   
@@ -137,6 +138,7 @@ session.sessionTitle
           </button>
         </form>
       </div>
+     </div>
     );
   };
 export default UploeadMaterial;

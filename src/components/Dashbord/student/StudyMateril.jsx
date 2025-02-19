@@ -4,6 +4,7 @@ import useAxiousPublic from "../../Shared/useAxiousPublic";
 import { useQuery } from "@tanstack/react-query";
 import { FaDownload, FaEdit, FaTrash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { div } from "framer-motion/client";
 
 
 const StudyMateril = () => {
@@ -22,12 +23,13 @@ const StudyMateril = () => {
        }
 //console.log('booked',booked)
     return (
-   <> { booked.length>0?
+<div className="min-h-screen  dark:bg-black   dark:text-white">
+<> { booked.length>0?
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
     {booked.map((material, index) => (
     <div
         key={material._id}
-        className="card shadow-lg rounded-lg border border-gray-200 bg-white"
+        className="card shadow-lg dark:bg-gray-500 dark:text-white  rounded-lg border border-gray-200 bg-white"
       >
         <div className="card-header p-4">
           <h3 className="text-lg font-bold mb-2">{material.sessionTitle}</h3>
@@ -51,7 +53,7 @@ const StudyMateril = () => {
   <a
     href={link} // Set the link to the image URL
     download={`image-${i + 1}`} // Specify a default filename for download
-    className="absolute top-2 right-2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 transition"
+    className="absolute top-2 right-2 dark:text-white  bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 transition"
     title="Download Image"
   >
     <FaDownload></FaDownload>
@@ -73,7 +75,7 @@ const StudyMateril = () => {
                  href={link}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="text-blue-600 underline text-sm"
+                 className="text-blue-600 dark:text-white underline text-sm"
                >
                  View Resource {i + 1}
                </a>
@@ -89,7 +91,8 @@ const StudyMateril = () => {
   </div>:<p>No Note Availabe</p>
    }
    </>
-    );
+
+</div>    );
 };
 
 export default StudyMateril;

@@ -25,8 +25,10 @@ console.log("studentverview",stats)
     const COLORS = ["#0088FE", "#FFBB28"];
 
     return (
-        <div className="max-w-6xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
-            <h2 className="text-3xl font-bold text-indigo-700 text-center mb-6"> Student Dashboard</h2>
+       <div className="min-h-screen py-12  dark:bg-black   dark:text-white">
+
+<div className="max-w-6xl mx-auto  p-6 bg-white dark:bg-gray-500 dark:text-white shadow-lg rounded-lg">
+            <h2 className="text-3xl dark:text-white font-bold text-indigo-700 text-center mb-6"> Student Dashboard</h2>
             
             {/* Stats Cards */}
             <div className="grid grid-cols-2 md:grid-cols-2 gap-6 text-center">
@@ -41,8 +43,8 @@ console.log("studentverview",stats)
             </div>
 
             {/* Charts */}
-            <div className="mt-10 bg-gray-100 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold text-center mb-4">Books vs Notes</h3>
+            <div className="mt-10 bg-gray-100  dark:bg-gray-400 dark:text-white p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-center dark:text-white mb-4">Books vs Notes</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie data={pieData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value">
@@ -55,6 +57,7 @@ console.log("studentverview",stats)
                 </ResponsiveContainer>
             </div>
         </div>
+       </div>
     );
 };
 

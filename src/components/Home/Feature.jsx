@@ -36,23 +36,23 @@ const features = [
 
 const Feature = () => {
     return (
-        <section className="py-16 p-2 md:p-4  bg-[#fbf6f6] text-gray-800">
+        <section className="py-16 p-2 md:p-4 dark:bg-black    bg-[#fbf6f6] text-gray-800">
             <div className=" mx-auto ">
-                <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-                    Why Choose <span className="text-indigo-600">StudyShaper?</span>
+                <h2 className="text-3xl font-bold text-center dark:text-white text-indigo-700 mb-8">
+                    Why Choose <span className="text-indigo-600 dark:text-white">StudyShaper?</span>
                 </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+                <p className="text-center dark:text-white text-gray-600 max-w-2xl mx-auto mb-10">
                     Unlock your learning potential with our top-notch study features.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition"
+                            className="bg-white dark:bg-gray-500 dark:text-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition"
                         >
                             <div className="mb-4">{feature.icon}</div>
-                            <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
-                            <p className="text-gray-600 mt-2">{feature.description}</p>
+                            <h3 className="text-xl dark:text-white font-semibold text-gray-900">{feature.title}</h3>
+                            <p className="text-gray-600 dark:text-white  mt-2">{feature.description}</p>
                         </div>
                     ))}
                 </div>

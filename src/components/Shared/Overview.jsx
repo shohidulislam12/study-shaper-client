@@ -22,12 +22,13 @@ const axiousSecure=useAxiousSecure()
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
     return (
-        <div className="max-w-6xl mx-auto my-4 p-6 bg-white shadow-lg rounded-lg">
-            <h2 className="text-3xl font-bold text-indigo-700 text-center mb-6">Dashboard Overview</h2>
+    <div className=" dark:bg-black  py-10 dark:text-white min-h-screen ">
+            <div className="max-w-6xl mx-auto py-4 p-6 dark:bg-gray-500  bg-white shadow-lg rounded-lg">
+            <h2 className="text-3xl font-bold dark:text-white  text-indigo-700 text-center mb-6">Dashboard Overview</h2>
             
             {/* Stats for admin  */}
-            <div className="grid grid-cols-3 gap-6 text-center">
-                <div className="p-4 bg-blue-500 text-white rounded-lg">
+            <div className="grid grid-cols-3 gap-6  text-center">
+                <div className="p-4 bg-blue-500  dark:text-white rounded-lg">
                     <h3 className="text-xl font-semibold">Total Users</h3>
                     <p className="text-2xl">{stats.totalUsers}</p>
                 </div>
@@ -44,8 +45,8 @@ const axiousSecure=useAxiousSecure()
             {/* Charts */}
             <div className="grid grid-cols-2 gap-6 mt-10">
                 {/* Bar Chart */}
-                <div className="p-4 bg-gray-100 rounded-lg">
-                    <h3 className="text-xl font-semibold text-center mb-4">Order & Revenue Stats</h3>
+                <div className="p-4 bg-gray-100 dark:bg-gray-400 dark:text-white  rounded-lg">
+                    <h3 className="text-xl font-semibold dark:text-white  text-center mb-4">Order & Revenue Stats</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={[stats]}>
                             <XAxis dataKey="name" />
@@ -58,8 +59,8 @@ const axiousSecure=useAxiousSecure()
                 </div>
 
                 {/* Pie Chart */}
-                <div className="p-4 bg-gray-100 rounded-lg">
-                    <h3 className="text-xl font-semibold text-center mb-4">Users vs Orders vs Revenue</h3>
+                <div className="p-4 bg-gray-100 dark:bg-gray-400 rounded-lg">
+                    <h3 className="text-xl dark:text-white font-semibold text-center mb-4">Users vs Orders vs Revenue</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie data={pieData} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value">
@@ -73,6 +74,7 @@ const axiousSecure=useAxiousSecure()
                 </div>
             </div>
         </div>
+    </div>
     );
 };
 

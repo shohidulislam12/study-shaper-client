@@ -31,9 +31,9 @@ const pages=[...Array(numberOfpage).keys()]
 
 
     return (
-        <div className="py-7 p-4  bg-[#fbf6f6] ">
+        <div className="py-7 p-4 dark:bg-black  text-black dark:text-white bg-[#fbf6f6] ">
      
-            <h2 className="text-3xl text-indigo-600 font-bold text-center  mb-8">
+            <h2 className="text-3xl text-indigo-600 dark:text-white font-bold text-center  mb-8">
                 Available Session
                 </h2>
             <div className="grid p-2 gap-5 grid-cols-1 md:grid-cols-3">
@@ -45,7 +45,7 @@ const pages=[...Array(numberOfpage).keys()]
            }
        
             </div>
-            <div className="flex items-center text-center">
+            <div className="flex items-center dark:text-black text-center">
                
           {
         pages.map((page,i)=><button  className={`join-item btn ${currentPage===page?'bg-green-200':''} `}

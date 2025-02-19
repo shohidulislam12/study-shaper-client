@@ -42,8 +42,8 @@ const handlePrevious=()=>{
 }
 
     return (
-        <div className="py-20 p-2 md:p-4 bg-[#fbf6f6]">
-            <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">Show All Tutor Tutor
+        <div className="py-20 p-2 md:p-4 dark:bg-black bg-[#fbf6f6]">
+            <h2 className="text-3xl dark:text-white  font-bold text-center text-indigo-700 mb-8">Show All Tutor Tutor
                 </h2>
             <div className="grid p-2 gap-5 grid-cols-1 md:grid-cols-4">
                 {

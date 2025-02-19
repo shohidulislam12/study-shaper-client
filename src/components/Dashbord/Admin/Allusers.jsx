@@ -58,7 +58,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto  dark:bg-gray-300   dark:text-black ">
       {/* Search Input */}
       <div>
         <label className="input input-bordered flex items-center gap-2">
@@ -86,7 +86,7 @@ const AllUsers = () => {
       {/* User Table */}
       <table className="table table-zebra">
         <thead>
-          <tr>
+          <tr className='dark:text-white'>
             <th>#</th>
             <th>User Name</th>
             <th>Contact</th>

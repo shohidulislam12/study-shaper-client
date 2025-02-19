@@ -34,19 +34,19 @@ const newsArticles = [
 
 const NewsComponent = () => {
     return (
-        <section className="py-5 p-2 md:p-4 bg-[#fbf6f6] text-gray-800">
+        <section className="py-5 p-2 md:p-4 dark:bg-black dark:text-white  bg-[#fbf6f6] text-gray-800">
             <div className=" mx-auto px-0">
-                <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-                    📢 Latest <span className="text-indigo-600">News & Updates</span>
+                <h2 className="text-3xl font-bold text-center dark:text-white  text-indigo-700 mb-8">
+                    📢 Latest <span className="text-indigo-600 dark:text-white">News & Updates</span>
                 </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+                <p className="text-center dark:text-white text-gray-600 max-w-2xl mx-auto mb-10">
                     Stay informed with the latest updates, study tips, and educational insights.
                 </p>
                 <div className="grid p-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                     {newsArticles.map((article, index) => (
                         <div
                             key={index}
-                            className="bg-white h-[550px] flex flex-col flex-grow p-4 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition"
+                            className="bg-white dark:text-white dark:bg-gray-500 h-[550px] flex flex-col flex-grow p-4 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition"
                         >
                            <div className="h-52">
                            <img
@@ -55,16 +55,16 @@ const NewsComponent = () => {
                                 className="w-full h-[100%]  object-cover"
                             />
                            </div>
-                            <div className="p-6 flex  flex-col justify-between  flex-grow">
-                                <h3 className="text-xl font-semibold text-gray-900">{article.title}</h3>
-                                <div className="flex items-center text-gray-500 text-sm mt-2">
+                            <div className="p-6 flex   flex-col justify-between  flex-grow">
+                                <h3 className="text-xl  dark:text-white font-semibold text-gray-900">{article.title}</h3>
+                                <div className="flex items-center dark:text-white text-gray-500 text-sm mt-2">
                                     <FaCalendarAlt className="mr-2 text-indigo-600" />
                                     <span>{article.date}</span>
                                 </div>
-                                <p className="text-gray-600 mt-3">{article.description}</p>
+                                <p className="text-gray-600 dark:text-white mt-3">{article.description}</p>
                                 <a
                                     href={article.link}
-                                    className="text-indigo-600 font-semibold mt-4 inline-block hover:underline" target="_blank"
+                                    className="text-indigo-100 font-semibold mt-4 inline-block hover:underline" target="_blank"
                                 >
                                     Read More →
                                 </a>

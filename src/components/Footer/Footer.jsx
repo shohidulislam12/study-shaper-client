@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-     <div className='bg-[#262626] text-center pb-5 text-white'>
-      <footer className="footer  items-center  p-5 bg-[#262626] text-white">
+     <div className='dark:bg-[#262626] dark:text-white text-black  bg-[#fbfcf8] text-center pb-5 '>
+      <footer className="footer  items-center  p-5 dark:bg-[#262626] dark:text-white text-black  bg-[#fbfcf8]">
       <div className="flex flex-col items-center">
         <img src="/reading.png" alt="Logo" className="w-12 h-12 mb-2" />
         <p className="font-bold">

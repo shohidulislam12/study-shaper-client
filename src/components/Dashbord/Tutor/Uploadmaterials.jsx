@@ -60,7 +60,9 @@ const approve=sessions.filter((session)=>session.status==='approve')
     });
   };
   return (
-    <div className="overflow-x-auto">
+   <div className=" dark:bg-black   dark:text-white">
+
+<div className="overflow-x-auto">
       <table className="table table-zebra">
         {/* head */}
         <thead>
@@ -91,6 +93,7 @@ const approve=sessions.filter((session)=>session.status==='approve')
         </tbody>
       </table>
     </div>
+   </div>
   );
 };
 

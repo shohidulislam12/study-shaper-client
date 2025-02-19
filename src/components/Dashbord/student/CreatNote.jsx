@@ -29,33 +29,35 @@ if(data.acknowledged){
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 my-5 bg-white shadow-md rounded-lg">
+<div className=' dark:bg-black  pt-10 dark:text-white min-h-screen '>
+
+<div className="max-w-md mx-auto p-6 py-5 dark:bg-gray-500 dark:text-white  bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Create Note</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email (Read-Only) */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text dark:text-white  ">Email</span>
           </label>
           <input
             type="email"
             name="email"
             value={user?.email || ''}
             readOnly
-            className="input input-bordered w-full"
+            className="input dark:text-black input-bordered w-full"
           />
         </div>
 
         {/* Title */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Title</span>
+            <span className="label-text dark:text-white">Title</span>
           </label>
           <input
             type="text"
             name="title"
             placeholder="Enter note title"
-            className="input input-bordered w-full"
+            className="input dark:text-black input-bordered w-full"
             required
           />
         </div>
@@ -63,12 +65,12 @@ if(data.acknowledged){
         {/* Description */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Description</span>
+            <span className="label-text dark:text-white">Description</span>
           </label>
           <textarea
             name="description"
             placeholder="Enter note description"
-            className="textarea textarea-bordered w-full"
+            className="textarea dark:text-black textarea-bordered w-full"
             required
           ></textarea>
         </div>
@@ -81,6 +83,7 @@ if(data.acknowledged){
         </div>
       </form>
     </div>
+</div>
   );
 };
 

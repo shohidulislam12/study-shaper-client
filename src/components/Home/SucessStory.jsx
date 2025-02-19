@@ -15,12 +15,12 @@ const SuccessStory = () => {
     }, []);
 
     return (
-        <section className="py-16 p-2 md:p-4 bg-gray-100 text-gray-800">
+        <section className="py-16 p-2 dark:bg-black  md:p-4 bg-gray-100 text-gray-800">
             <div className="max-w-6xl mx-auto px-2">
-                <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-                    🏆 Success <span className="text-indigo-600">Stories</span>
+                <h2 className="text-3xl font-bold text-center dark:text-white text-indigo-700 mb-8">
+                    🏆 Success <span className="text-indigo-600 dark:text-white">Stories</span>
                 </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+                <p className="text-center dark:text-white text-gray-600 max-w-2xl mx-auto mb-10">
                     Here are some inspiring success stories from our students who transformed their careers with StudyShaper.
                 </p>
             </div>
@@ -41,15 +41,15 @@ const SuccessStory = () => {
             >
                 {stories.map((student, index) => (
                     <SwiperSlide key={index}>
-                        <div className="bg-white shadow-lg rounded-xl overflow-hidden p-6 text-left">
+                        <div className="bg-white dark:text-white dark:bg-gray-500 shadow-lg rounded-xl overflow-hidden p-6 text-left">
                             <img
                                 src={student.image}
                                 alt={student.name}
                                 className="w-24 h-24 mx-auto rounded-full shadow-md mb-4"
                             />
-                            <h3 className="text-xl font-bold text-gray-900">{student.name}</h3>
-                            <p className="text-indigo-600 font-semibold">{student.title}</p>
-                            <p className="text-gray-600 mt-3 text-sm">{student.story}</p>
+                            <h3 className="text-xl font-bold dark:text-white text-gray-900">{student.name}</h3>
+                            <p className="text-indigo-600  dark:text-white font-semibold">{student.title}</p>
+                            <p className="text-gray-600 dark:text-white mt-3 text-sm">{student.story}</p>
                         </div>
                     </SwiperSlide>
                 ))}

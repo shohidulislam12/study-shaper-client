@@ -57,11 +57,11 @@ const DashBord = () => {
   </div>
   <div className="drawer-side  mt-16 md:mt-0">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-    <ul className="menu bg-[#fbf6f6] text-base-content min-h-full lg:w-80 p-4">
+    <ul className="menu bg-[#fbf6f6] dark:bg-[#262626] dark:text-white   text-base-content min-h-full lg:w-80 p-4">
       {/* Sidebar for Student DashBord here */}
      {role==='student'&&<span>
       
-      <div className="divider">Student</div>
+      <div className="divider  dark:text-white ">Student</div>
       <li> <NavLink to='/'><FaHome/> Home</NavLink></li>
       <li><NavLink to='profile'> <FaUserCircle />Profile</NavLink></li>
       <li><NavLink to='studentverview'> <img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" /> Staticts </NavLink></li>
@@ -72,7 +72,7 @@ const DashBord = () => {
             {/* Sidebar for Tutor DashBord here */}
            { role==='tutor'&&
             <span>
-               <div className="divider">Tutor</div>
+               <div className="divider dark:text-white ">Tutor</div>
                <li><NavLink to='/'><FaHome/> Home</NavLink></li>
                <li><NavLink to='profile'><FaUserCircle /> Profile</NavLink></li>
                <li><NavLink to='tutoroverview'><img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" /> Staticts </NavLink></li>
@@ -85,7 +85,7 @@ const DashBord = () => {
             {/* Sidebar for Tutor DashBord here */}
 {role==='admin'&&
   <span>
-                <div className="divider">Admin</div>
+                <div className="divider dark:text-white ">Admin</div>
                 <li><NavLink to='/'><FaHome/> Home</NavLink></li>
                 <li><NavLink to='profile'><FaUserCircle /> Profile</NavLink></li>
                 <li><NavLink to='adminoverview'><img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" />  Staticts</NavLink></li>

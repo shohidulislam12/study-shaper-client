@@ -39,13 +39,15 @@ useEffect(()=>{
      
       }
     return (
-        <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Update Note</h2>
+      <div className=" dark:bg-black   dark:text-white min-h-screen  py-10">
+
+<div className="max-w-md mx-auto p-6 dark:bg-gray-500 dark:text-white  bg-white shadow-md rounded-lg">
+        <h2 className="text-2xl font-bold mb-6 dark:text-white  text-center">Update Note</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email (Read-Only) */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text dark:text-white ">Email</span>
             </label>
             <input
               type="email"
@@ -53,7 +55,7 @@ useEffect(()=>{
               
               value={user?.email || ''}
               readOnly
-              className="input input-bordered w-full"
+              className="input dark:text-black input-bordered w-full"
             />
           </div>
   
@@ -61,7 +63,7 @@ useEffect(()=>{
           <div className="form-control">
             <label className="label">
                 
-              <span className="label-text">Title</span>
+              <span className="label-text dark:text-white">Title</span>
             </label>
             <input
             defaultValue={note?.title}
@@ -69,7 +71,7 @@ useEffect(()=>{
               type="text"
               name="title"
               placeholder="Enter note title"
-              className="input input-bordered w-full"
+              className="input dark:text-black input-bordered w-full"
               required
             />
           </div>
@@ -77,14 +79,14 @@ useEffect(()=>{
           {/* Description */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Description</span>
+              <span className="label-text dark:text-white ">Description</span>
             </label>
             <textarea
             onChange={(e)=>setdescription(e.target.value)}
             defaultValue={note?.description}
               name="description"
               placeholder="Enter note description"
-              className="textarea textarea-bordered w-full"
+              className="textarea dark:text-black textarea-bordered w-full"
               required
             ></textarea>
           </div>
@@ -96,6 +98,7 @@ useEffect(()=>{
             </button>
           </div>
         </form>
+      </div>
       </div>
     );
   };

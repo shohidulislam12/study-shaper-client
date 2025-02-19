@@ -8,7 +8,7 @@ const StudySessionCard = ({session}) => {
 
     const {sessionTitle,thumbnelurl,sessionDescription}=session
     return (
-        <div className="card bg-base-100 border border-gray-200 shadow-lg rounded-lg overflow-hidden group transition-transform transform ">
+        <div className="card bg-base-100 dark:bg-gray-600 border border-gray-200 shadow-lg rounded-lg overflow-hidden group transition-transform transform ">
         <figure className="overflow-hidden relative">
             <img
                 src={thumbnelurl}
@@ -21,10 +21,10 @@ registrationFee==='0'?'Free':`${session.registrationFee}$`}</span>
             </div>
         </figure>
         <div className="card-body py-4 px-5 text-center">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2 transition-all group-hover:text-indigo-600">
+            <h2 className="text-2xl font-semibold dark:text-white text-gray-800 mb-2 transition-all group-hover:text-indigo-600">
                {sessionTitle}
             </h2>
-            <p className="text-gray-500 text-sm mb-4 transition-all group-hover:text-gray-700">
+            <p className="text-gray-500 dark:text-white text-sm mb-4 transition-all group-hover:text-gray-700">
                {sessionDescription}
             </p>
             <div className="card-actions flex justify-between">

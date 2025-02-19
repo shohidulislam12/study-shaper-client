@@ -33,9 +33,9 @@ const Faq = () => {
     };
 
     return (
-        <section className="pb-16 pt-5 p-2 md:p-4 bg-[#fbf6f6] text-gray-800">
-               <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-                    ❓ Frequently Asked <span className="text-indigo-600">Questions</span>
+        <section className="pb-16 pt-5 p-2 md:p-4 dark:bg-black  bg-[#fbf6f6] text-gray-800">
+               <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8 dark:text-white">
+                    ❓ Frequently Asked <span className="text-indigo-600 dark:text-white ">Questions</span>
                 </h2>
           <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2  w-full">
@@ -47,14 +47,14 @@ const Faq = () => {
         />
      
             </div>
-            <div className="md:w-1/2 w-full mx-auto p2 md:p-4">
+            <div className="md:w-1/2 w-full  mx-auto p2 md:p-4">
              
-                <p className="text-center text-black max-w-2xl mx-auto mb-10">
+                <p className="text-center dark:text-white  text-black max-w-2xl mx-auto mb-10">
                     Here are some of the most common questions we get from students.
                 </p>
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+                        <div key={index} className="bg-white dark:bg-gray-200 dark:text-white  shadow-md rounded-lg overflow-hidden">
                             <button
                                 className="w-full flex justify-between items-center md:px-4 py-4 text-left font-semibold text-gray-900 hover:bg-gray-200 transition"
                                 onClick={() => toggleFAQ(index)}

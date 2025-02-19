@@ -57,11 +57,12 @@ const Allmaterialsadmin = () => {
 
     }
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+<div className=" dark:bg-black   dark:text-white min-h-screen ">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
    {materials.map((material, index) => (
           <div
             key={material._id}
-            className="card shadow-lg rounded-lg border border-gray-200 bg-white"
+            className="card shadow-lg dark:bg-gray-500 dark:text-white rounded-lg border border-gray-200 bg-white"
           >
             <div className="card-header p-4">
               <h3 className="text-lg font-bold mb-2">{material.sessionTitle}</h3>
@@ -87,7 +88,7 @@ const Allmaterialsadmin = () => {
                       href={link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 underline text-sm"
+                      className="text-blue-600 dark:text-white underline text-sm"
                     >
                       View Resource {i + 1}
                     </a>
@@ -100,7 +101,7 @@ const Allmaterialsadmin = () => {
             <div className="card-footer p-4 flex justify-between items-center border-t border-gray-200">
              
             <button
-                className="btn btn-warning btn-sm"
+                className="btn btn-outline  btn-sm"
                 onClick={() => handleDelete(material._id)}
               >
                 <FaTrash className="mr-1" />
@@ -110,6 +111,7 @@ const Allmaterialsadmin = () => {
           </div>
         ))}
       </div>
+</div>
     );
   };
 

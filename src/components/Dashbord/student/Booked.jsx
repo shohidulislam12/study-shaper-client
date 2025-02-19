@@ -26,11 +26,11 @@ const {user}=useContext(AuthContext)
 //console.log(booked)
 
     return (
-        <div className="overflow-x-auto">
-        <table className="table">
+        <div className="overflow-x-auto  dark:bg-black   dark:text-white">
+        <table className="table dark:text-white">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="dark:text-white">
               <th>
                 <label>
                   <input type="checkbox" className="checkbox" />

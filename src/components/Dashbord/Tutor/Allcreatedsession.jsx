@@ -61,22 +61,22 @@ const Allcreatedsession = () => {
     });
   };
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-zebra">
+    <div className="overflow-x-auto dark:bg-black dark:text-white  ">
+      <table className="table table-zebra dark:bg-black dark:text-white" >
         {/* head */}
         <thead>
-          <tr>
-            <th></th>
-            <th>Session Title</th>
+          <tr className="dark:text-white">
+            <th ></th>
+            <th >Session Title</th>
             <th>Rejistration fee</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="dark:bg-black dark:text-white">
           {sessions.map((session, i) => (
-            <tr key={session._id}>
-              <th>{i + 1}</th>
+            <tr key={session._id} className=" dark:bg-gray-400 dark:text-black">
+              <th className="">{i + 1}</th>
               <td>{session.sessionTitle}</td>
               <td>{session.registrationFee}</td>
               <td>{session.status}</td>

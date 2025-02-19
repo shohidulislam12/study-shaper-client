@@ -9,7 +9,7 @@ const fadeIn = {
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen my-16 bg-gray-50">
+    <div className="min-h-screen dark:bg-black py-16 bg-gray-50">
       {/* Hero Section */}
       <motion.div
         className="hero h-96"
@@ -34,15 +34,15 @@ const AboutUs = () => {
 
       {/* Our Mission */}
       <motion.div className="max-w-6xl mx-auto p-8 text-center" variants={fadeIn} initial="hidden" whileInView="visible">
-        <h2 className="text-4xl font-semibold text-gray-800">Our Mission</h2>
-        <p className="text-lg text-gray-600 mt-4">
+        <h2 className="text-4xl font-semibold dark:text-white  text-gray-800">Our Mission</h2>
+        <p className="text-lg text-gray-600 dark:text-white mt-4">
           At StudyShaper, we aim to revolutionize the way students learn by providing high-quality 
           study materials, interactive courses, and a supportive community.
         </p>
       </motion.div>
 
       {/* Why Choose Us */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto p-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6  mx-auto p-2 md:p-4">
         {[
           { title: "Expert Instructors", desc: "Learn from the best educators." },
           { title: "Interactive Learning", desc: "Engaging lessons and quizzes." },
@@ -50,21 +50,21 @@ const AboutUs = () => {
         ].map((item, index) => (
           <motion.div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-md"
+            className="bg-white  dark:bg-gray-500 p-6 rounded-lg shadow-md"
             whileHover={{ scale: 1.05 }}
             variants={fadeIn}
             initial="hidden"
             whileInView="visible"
           >
-            <h3 className="text-2xl font-bold text-blue-600">{item.title}</h3>
-            <p className="text-gray-600 mt-2">{item.desc}</p>
+            <h3 className="text-2xl font-bold dark:text-white  text-blue-600">{item.title}</h3>
+            <p className="text-gray-600 dark:text-white  mt-2">{item.desc}</p>
           </motion.div>
         ))}
       </div>
 
       {/* Meet Our Team */}
-      <div className="max-w-6xl mx-auto text-center p-8">
-        <h2 className="text-4xl font-semibold text-gray-800">Meet Our Team</h2>
+      <div className=" mx-auto text-center p-2 md:p-3">
+        <h2 className="text-4xl font-semibold dark:text-white  text-gray-800">Meet Our Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {[
   { name: "John Doe", role: "Founder & CEO", img: "https://i.pravatar.cc/150?img=1" },
@@ -79,15 +79,15 @@ const AboutUs = () => {
 ].map((member, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-white dark:bg-gray-500  p-6 rounded-lg shadow-md"
               whileHover={{ scale: 1.05 }}
               variants={fadeIn}
               initial="hidden"
               whileInView="visible"
             >
               <img className="w-32 h-32 mx-auto rounded-full" src={member.img} alt={member.name} />
-              <h3 className="text-2xl font-bold text-gray-800 mt-4">{member.name}</h3>
-              <p className="text-gray-600">{member.role}</p>
+              <h3 className="text-2xl font-bold dark:text-white  text-gray-800 mt-4">{member.name}</h3>
+              <p className="text-gray-600 dark:text-white">{member.role}</p>
             </motion.div>
           ))}
         </div>
@@ -95,8 +95,8 @@ const AboutUs = () => {
 
       {/* Testimonials */}
  {/* Testimonials */}
-<motion.div className="bg-blue-50 py-16 text-center" variants={fadeIn} initial="hidden" whileInView="visible">
-  <h2 className="text-4xl font-semibold text-gray-800">What Our Students Say</h2>
+<motion.div className="bg-blue-50 dark:bg-black py-16 text-center" variants={fadeIn} initial="hidden" whileInView="visible">
+  <h2 className="text-4xl font-semibold dark:text-white  text-gray-800">What Our Students Say</h2>
   
   <div className="max-w-6xl mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
     { [
@@ -151,11 +151,11 @@ const AboutUs = () => {
 ].map((review, index) => (
       <motion.div
         key={index}
-        className="bg-white p-6 rounded-lg shadow-md"
+        className="bg-white dark:bg-gray-500  p-6 rounded-lg shadow-md"
         whileHover={{ scale: 1.05 }}
       >
-        <p className="text-gray-600 text-left italic">"{review.quote}"</p>
-        <h3 className="text-xl font-bold text-gray-800 mt-2">- {review.name}</h3>
+        <p className="text-gray-600 text-left dark:text-white italic">"{review.quote}"</p>
+        <h3 className="text-xl font-bold  text-gray-800 dark:text-white  mt-2">- {review.name}</h3>
       </motion.div>
     ))}
   </div>
@@ -164,8 +164,8 @@ const AboutUs = () => {
 
       {/* Call to Action */}
       <motion.div className="text-center py-10" variants={fadeIn} initial="hidden" whileInView="visible">
-        <h2 className="text-3xl font-bold text-gray-800">Join StudyShaper Today</h2>
-        <p className="text-lg text-gray-600 mt-2">Start your journey with us and learn smarter!</p>
+        <h2 className="text-3xl font-bold dark:text-white  text-gray-800">Join StudyShaper Today</h2>
+        <p className="text-lg text-gray-600 dark:text-white  mt-2">Start your journey with us and learn smarter!</p>
         <Link to='/signin'>
           <motion.button
             className="mt-4 px-6 py-3 bg-blue-600 text-white text-lg rounded-lg hover:bg-blue-700"
