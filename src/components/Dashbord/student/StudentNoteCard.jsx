@@ -10,7 +10,7 @@ const StudentNoteCard = ({note,handledelete}) => {
           <h3 className="text-lg font-semibold text-gray-800">{note.title}</h3>
           <button
           onClick={()=>handledelete(note._id)}
-            className="btn btn-warning btn-sm"
+            className="btn btn-outline btn-sm"
             
           >
             Delete

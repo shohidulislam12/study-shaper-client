@@ -89,9 +89,9 @@ const AllUsers = () => {
           <tr>
             <th>#</th>
             <th>User Name</th>
-            <th>Registration Fee</th>
+            <th>Contact</th>
             <th>Status</th>
-            <th>Action</th>
+         
           </tr>
         </thead>
         <tbody>
@@ -102,7 +102,7 @@ const AllUsers = () => {
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
-                      <img src={user.photoURL} alt="Avatar" />
+                      <img src={user?.photoURL} alt="Avatar" />
                     </div>
                   </div>
                   <div>
@@ -111,11 +111,12 @@ const AllUsers = () => {
                   </div>
                 </div>
               </td>
-              <td>
-                Zemlak, Daniel and Leannon
+              <td> 
+               Adress:{user?.
+address ||'not provided'}
                 <br />
                 <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
+              Phon:  {user?.phone ||'not provided'}
                 </span>
               </td>
               <td>

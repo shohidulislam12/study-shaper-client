@@ -14,7 +14,7 @@ const Allstudysession = () => {
   const axiousPublic = useAxiousPublic();
   const axiousSecure=useAxiousSecure()
   const [status, setSelestatus] = useState("pending");
-  const [amount, setAmount] = useState('0');
+  const [amount, setAmount] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [rejectreson, setrejectreson] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -71,7 +71,7 @@ useEffect(()=>{
             status,
             rejectreson:rejectreson,
             feedback:feedback,
-            registrationFee:amount
+            registrationFee:parseInt(amount)
           })
           .then((res) => {
             refetch();

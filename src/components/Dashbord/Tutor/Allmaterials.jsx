@@ -96,13 +96,13 @@ const Allmaterials = () => {
             <div className="card-footer p-4 flex justify-between items-center border-t border-gray-200">
               <NavLink
                 to={`material/${material._id}`}
-                className="btn btn-warning btn-sm"
+                className="btn btn-primary btn-sm"
               >
                 <FaEdit className="mr-1" />
                 Edit
               </NavLink>
               <button
-                className="btn btn-error btn-sm"
+                className="btn btn-outline btn-sm"
                 onClick={() => handleDelete(material._id)}
               >
                 <FaTrash className="mr-1" />

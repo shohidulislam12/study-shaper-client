@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaEdit, FaHome, FaUpload, FaUserCircle, FaUsersCog } from 'react-icons/fa';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import useAxiousSecure from '../Shared/useAxiousSecure';
 import { AuthContext } from '../Authprovider/AuthProvider';
+import { FcStatistics } from 'react-icons/fc';
+import { TfiWrite } from 'react-icons/tfi';
+import { MdOutlineSpeakerNotes, MdViewList } from 'react-icons/md';
 
 const DashBord = () => {
   const location=useLocation()
@@ -59,34 +62,38 @@ const DashBord = () => {
      {role==='student'&&<span>
       
       <div className="divider">Student</div>
-      <li> <NavLink to='/'>Home</NavLink></li>
-      <li><NavLink to='profile'>Profile</NavLink></li>
-      <li><NavLink to='booked'>View booked session</NavLink></li>
-      <li><NavLink to='createnote'>Create note</NavLink></li>
-      <li><NavLink to='personalnotes'>Manage personal notes</NavLink></li>
-    <li><NavLink to='studymaterials'>Study materials from tutor</NavLink></li></span>}
+      <li> <NavLink to='/'><FaHome/> Home</NavLink></li>
+      <li><NavLink to='profile'> <FaUserCircle />Profile</NavLink></li>
+      <li><NavLink to='studentverview'> <img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" /> Staticts </NavLink></li>
+      <li><NavLink to='booked'> <MdViewList />View booked session</NavLink></li>
+      <li><NavLink to='createnote'> <TfiWrite />Create note</NavLink></li>
+      <li><NavLink to='personalnotes'> <FaEdit/>Manage personal notes</NavLink></li>
+    <li><NavLink to='studymaterials'><MdOutlineSpeakerNotes /> Study materials from tutor</NavLink></li></span>}
             {/* Sidebar for Tutor DashBord here */}
            { role==='tutor'&&
             <span>
                <div className="divider">Tutor</div>
-               <li><NavLink to='/'>Home</NavLink></li>
-               <li><NavLink to='profile'>Profile</NavLink></li>
-            <li><NavLink to='creatsession'>Create study session</NavLink></li>
-      <li><NavLink to='createdsession'>All Created Session</NavLink></li>
-      <li><NavLink to='uploadmaterials'> Upload materials</NavLink></li>
-    <li><NavLink to='materials'> All Your materials</NavLink></li>
+               <li><NavLink to='/'><FaHome/> Home</NavLink></li>
+               <li><NavLink to='profile'><FaUserCircle /> Profile</NavLink></li>
+               <li><NavLink to='tutoroverview'><img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" /> Staticts </NavLink></li>
+            <li><NavLink to='creatsession'><TfiWrite /> Create study session</NavLink></li>
+      <li><NavLink to='createdsession'><MdViewList /> All Created Session</NavLink></li>
+      
+    <li><NavLink to='materials'> <MdOutlineSpeakerNotes /> All Your materials</NavLink></li>
             </span>
            }
             {/* Sidebar for Tutor DashBord here */}
 {role==='admin'&&
   <span>
                 <div className="divider">Admin</div>
-                <li><NavLink to='/'>Home</NavLink></li>
-                <li><NavLink to='profile'>Profile</NavLink></li>
-            <li><NavLink to='allusers'>All users</NavLink></li>
-      <li><NavLink to='allstudysession'>All study session</NavLink></li>
+                <li><NavLink to='/'><FaHome/> Home</NavLink></li>
+                <li><NavLink to='profile'><FaUserCircle /> Profile</NavLink></li>
+                <li><NavLink to='adminoverview'><img src="https://i.ibb.co.com/MDhGq8sj/statistics.png" alt="" />  Staticts</NavLink></li>
+                
+            <li><NavLink to='allusers'> <FaUsersCog /> All users</NavLink></li>
+      <li><NavLink to='allstudysession'><MdViewList /> All study session</NavLink></li>
 
-    <li><NavLink to='allmaterials'> All  Materials</NavLink></li>
+    <li><NavLink to='allmaterials'> <MdOutlineSpeakerNotes /> All  Materials</NavLink></li>
   </span>
 }
 

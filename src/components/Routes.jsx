@@ -32,6 +32,9 @@ import BlogPage from "./blogpage/BlogPage.jsx";
 import AboutUs from "./aboutus/AboutUs.jsx";
 import Community from "./commonity/Community.jsx";
 import Profile from "./Profile.jsx";
+import Overview from "./Shared/Overview.jsx";
+import StudentDashboard from "./Dashbord/student/StudentDashboard.jsx";
+import TutorDashBord from "./Dashbord/Tutor/TutorDashBord.jsx";
 
 
     const router = createBrowserRouter([
@@ -81,8 +84,19 @@ import Profile from "./Profile.jsx";
           children:[
             // student dashbord
             {
+          
+              path:'studentverview',
+              element:<PrivetRoute><StudentDashboard></StudentDashboard></PrivetRoute>
+       
+          },
+           
+            {
               path:'booked',
               element:<StudentPrivet><Booked></Booked></StudentPrivet>
+          },
+            {
+              path:'',
+              element:<PrivetRoute><Profile></Profile></PrivetRoute>
           },
             {
               path:'profile',
@@ -105,6 +119,12 @@ import Profile from "./Profile.jsx";
               element:<StudentPrivet><StudyMateril></StudyMateril></StudentPrivet>
           },
           // tutor dashbord
+          {
+          
+            path:'tutoroverview',
+            element:<TutorPrivet><TutorDashBord></TutorDashBord></TutorPrivet>
+     
+        },
             {
               path:'materials',
               element:<Allmaterials></Allmaterials>
@@ -134,6 +154,12 @@ import Profile from "./Profile.jsx";
               element:<TutorPrivet><Allcreatedsession></Allcreatedsession></TutorPrivet>
           },
           // admin dashbord
+          {
+          
+            path:'adminoverview',
+            element:<AdminPrivet><Overview></Overview></AdminPrivet>
+     
+        },
             {
               path:'allmaterials',
               element:<AdminPrivet><Allmaterialsadmin></Allmaterialsadmin></AdminPrivet>
