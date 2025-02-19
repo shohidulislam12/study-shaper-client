@@ -4,7 +4,7 @@ const TutorCard = ({tutor}) => {
 
     return (
      
-            <div className="card bg-base-100 shadow-md group   hover:shadow-lg rounded-lg overflow-hidden transform max-w-xs mx-auto">
+            <div className="card p-2 bg-base-100 shadow-md group   hover:shadow-lg rounded-lg overflow-hidden transform  w-full mx-auto">
             <figure className="relative group">
                 <img
                     src={tutor.photoURL}

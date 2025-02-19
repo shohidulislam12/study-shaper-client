@@ -36,8 +36,8 @@ const features = [
 
 const Feature = () => {
     return (
-        <section className="py-16 bg-[#fbf6f6] text-gray-800">
-            <div className="max-w-6xl mx-auto px-6">
+        <section className="py-16 p-2 md:p-4  bg-[#fbf6f6] text-gray-800">
+            <div className=" mx-auto ">
                 <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
                     Why Choose <span className="text-indigo-600">StudyShaper?</span>
                 </h2>

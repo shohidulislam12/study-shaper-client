@@ -10,7 +10,7 @@ const TutorSection = () => {
     const {user}=useContext(AuthContext)
  const [currentPage,setCurrentPage]=useState(0)
     const axiousPublic=useAxiousPublic()
-    const sizeogPage=3
+    const sizeogPage=4
     const {data,isLoading,refetch} = useQuery({
         queryKey: ['tutors',sizeogPage,currentPage],
          queryFn: async()=>{
@@ -42,9 +42,10 @@ const handlePrevious=()=>{
 }
 
     return (
-        <div className="my-20">
-            <h2 className="text-3xl text-center my-5 font-semibold">Show All Tutor Tutor</h2>
-            <div className="grid p-2 gap-5 grid-cols-1 md:grid-cols-3">
+        <div className="py-20 p-2 md:p-4 bg-[#fbf6f6]">
+            <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">Show All Tutor Tutor
+                </h2>
+            <div className="grid p-2 gap-5 grid-cols-1 md:grid-cols-4">
                 {
                     tutors.map(tutor=>  <TutorCard tutor={tutor} key={tutor._id}></TutorCard>)
                 }

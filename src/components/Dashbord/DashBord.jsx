@@ -35,7 +35,7 @@ const DashBord = () => {
 
 
     return (
-        <div className='mt-16 min-h-screen'>
+        <div className='min-h-screen'>
 <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col  ">
@@ -54,10 +54,13 @@ const DashBord = () => {
   </div>
   <div className="drawer-side  mt-16 md:mt-0">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-    <ul className="menu bg-base-200 text-base-content min-h-full lg:w-80 p-4">
+    <ul className="menu bg-[#fbf6f6] text-base-content min-h-full lg:w-80 p-4">
       {/* Sidebar for Student DashBord here */}
      {role==='student'&&<span>
+      
       <div className="divider">Student</div>
+      <li> <NavLink to='/'>Home</NavLink></li>
+      <li><NavLink to='profile'>Profile</NavLink></li>
       <li><NavLink to='booked'>View booked session</NavLink></li>
       <li><NavLink to='createnote'>Create note</NavLink></li>
       <li><NavLink to='personalnotes'>Manage personal notes</NavLink></li>
@@ -66,6 +69,8 @@ const DashBord = () => {
            { role==='tutor'&&
             <span>
                <div className="divider">Tutor</div>
+               <li><NavLink to='/'>Home</NavLink></li>
+               <li><NavLink to='profile'>Profile</NavLink></li>
             <li><NavLink to='creatsession'>Create study session</NavLink></li>
       <li><NavLink to='createdsession'>All Created Session</NavLink></li>
       <li><NavLink to='uploadmaterials'> Upload materials</NavLink></li>
@@ -76,6 +81,8 @@ const DashBord = () => {
 {role==='admin'&&
   <span>
                 <div className="divider">Admin</div>
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='profile'>Profile</NavLink></li>
             <li><NavLink to='allusers'>All users</NavLink></li>
       <li><NavLink to='allstudysession'>All study session</NavLink></li>
 

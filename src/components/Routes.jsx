@@ -31,6 +31,7 @@ import ErrorElement from "./ErrorElement.jsx";
 import BlogPage from "./blogpage/BlogPage.jsx";
 import AboutUs from "./aboutus/AboutUs.jsx";
 import Community from "./commonity/Community.jsx";
+import Profile from "./Profile.jsx";
 
 
     const router = createBrowserRouter([
@@ -59,76 +60,7 @@ import Community from "./commonity/Community.jsx";
                 path:'/payment',
                 element:<Payment></Payment>
             },
-            {
-                path:'/dashbord',
-                element:<PrivetRoute><DashBord></DashBord></PrivetRoute>,
-                children:[
-                  // student dashbord
-                  {
-                    path:'booked',
-                    element:<StudentPrivet><Booked></Booked></StudentPrivet>
-                },
-                  {
-                    path:'createnote',
-                    element:<StudentPrivet><CreartNote></CreartNote></StudentPrivet>
-                },
-                  {
-                    path:'personalnotes/note/:id',
-                    element:<StudentPrivet><EditNote></EditNote></StudentPrivet>
-                },
-                  {
-                    path:'personalnotes',
-                    element:<StudentPrivet><ManegeNote></ManegeNote></StudentPrivet>
-                },
-                  {
-                    path:'studymaterials',
-                    element:<StudentPrivet><StudyMateril></StudyMateril></StudentPrivet>
-                },
-                // tutor dashbord
-                  {
-                    path:'materials',
-                    element:<Allmaterials></Allmaterials>
-                },
-                  {
-                    path:'creatsession',
-                    element:<TutorPrivet><Creatsession></Creatsession></TutorPrivet>
-                },
-                 {
-                    path:'createdsession/material/:id',
-                    element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
-                },
-                {
-                  path:'uploadmaterials/material/:id',
-                  element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
-              },
-                {
-                  path:'materials/material/:id',
-                  element:<TutorPrivet><EditMaterial></EditMaterial></TutorPrivet>
-              },
-                  {
-                    path:'uploadmaterials',
-                    element:<TutorPrivet><Uploadmaterials></Uploadmaterials></TutorPrivet>
-                },
-                  {
-                    path:'createdsession',
-                    element:<TutorPrivet><Allcreatedsession></Allcreatedsession></TutorPrivet>
-                },
-                // admin dashbord
-                  {
-                    path:'allmaterials',
-                    element:<AdminPrivet><Allmaterialsadmin></Allmaterialsadmin></AdminPrivet>
-                },
-                  {
-                    path:'allstudysession',
-                    element:<AdminPrivet><Allstudysession></Allstudysession></AdminPrivet>
-                },
-                  {
-                    path:'allusers',
-                    element:<AdminPrivet><Allusers></Allusers></AdminPrivet>
-                },
-                  
-                ]
-            },
+          
             {
                 path:'/signin',
                 element:<SignIn></SignIn>
@@ -143,6 +75,80 @@ import Community from "./commonity/Community.jsx";
             },
           ]
         },
+        {
+          path:'/dashbord',
+          element:<PrivetRoute><DashBord></DashBord></PrivetRoute>,
+          children:[
+            // student dashbord
+            {
+              path:'booked',
+              element:<StudentPrivet><Booked></Booked></StudentPrivet>
+          },
+            {
+              path:'profile',
+              element:<PrivetRoute><Profile></Profile></PrivetRoute>
+          },
+            {
+              path:'createnote',
+              element:<StudentPrivet><CreartNote></CreartNote></StudentPrivet>
+          },
+            {
+              path:'personalnotes/note/:id',
+              element:<StudentPrivet><EditNote></EditNote></StudentPrivet>
+          },
+            {
+              path:'personalnotes',
+              element:<StudentPrivet><ManegeNote></ManegeNote></StudentPrivet>
+          },
+            {
+              path:'studymaterials',
+              element:<StudentPrivet><StudyMateril></StudyMateril></StudentPrivet>
+          },
+          // tutor dashbord
+            {
+              path:'materials',
+              element:<Allmaterials></Allmaterials>
+          },
+            {
+              path:'creatsession',
+              element:<TutorPrivet><Creatsession></Creatsession></TutorPrivet>
+          },
+           {
+              path:'createdsession/material/:id',
+              element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
+          },
+          {
+            path:'uploadmaterials/material/:id',
+            element:<TutorPrivet><UploeadMaterial></UploeadMaterial></TutorPrivet>
+        },
+          {
+            path:'materials/material/:id',
+            element:<TutorPrivet><EditMaterial></EditMaterial></TutorPrivet>
+        },
+            {
+              path:'uploadmaterials',
+              element:<TutorPrivet><Uploadmaterials></Uploadmaterials></TutorPrivet>
+          },
+            {
+              path:'createdsession',
+              element:<TutorPrivet><Allcreatedsession></Allcreatedsession></TutorPrivet>
+          },
+          // admin dashbord
+            {
+              path:'allmaterials',
+              element:<AdminPrivet><Allmaterialsadmin></Allmaterialsadmin></AdminPrivet>
+          },
+            {
+              path:'allstudysession',
+              element:<AdminPrivet><Allstudysession></Allstudysession></AdminPrivet>
+          },
+            {
+              path:'allusers',
+              element:<AdminPrivet><Allusers></Allusers></AdminPrivet>
+          },
+            
+          ]
+      },
       ]);
 
 
